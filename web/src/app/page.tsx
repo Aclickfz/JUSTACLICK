@@ -17,6 +17,8 @@ export default function HomePage() {
     <>
       <HomeHero />
 
+      <SupplyChainGlobe />
+
       <section className="relative py-24">
         <div className="section-shell">
           <SectionHeading
@@ -173,8 +175,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <SupplyChainGlobe />
 
       <ContactForm />
     </>
