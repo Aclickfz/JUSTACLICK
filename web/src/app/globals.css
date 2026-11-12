@@ -142,6 +142,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: clip;
     background-image:
       radial-gradient(ellipse 80% 50% at 100% -20%, rgb(249 115 22 / 0.12), transparent),
       radial-gradient(ellipse 60% 40% at -10% 40%, rgb(11 18 32 / 0.06), transparent);

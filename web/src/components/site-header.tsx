@@ -24,7 +24,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { useState, type SVGProps } from "react";
+import { useEffect, useState, type SVGProps } from "react";
 
 const exploreLinks = [
   { href: "/", label: "Home" },
@@ -132,6 +132,27 @@ export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const goingDown = y > lastY;
+      // Hide while scrolling down past a small threshold; show on scroll up / top
+      if (goingDown && y > 64) {
+        setHidden(true);
+        setOpen(false);
+      } else {
+        setHidden(false);
+      }
+      lastY = y;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function go(href: string) {
     router.push(href);
@@ -146,12 +167,17 @@ export function SiteHeader() {
   const networkActive = networkLinks.some((l) => pathname.startsWith(l.href));
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-navy text-white shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-      <div className="border-b border-white/10 bg-navy-deep">
-        <div className="flex w-full items-center justify-between gap-4 px-4 py-2.5 text-[12px] text-white/65 sm:px-6 lg:px-8">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full bg-navy text-white shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-transform duration-300 will-change-transform",
+        hidden && "-translate-y-full"
+      )}
+    >
+      <div className="hidden border-b border-white/10 bg-navy-deep sm:block">
+        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-4 py-2.5 text-[12px] text-white/65 sm:px-6 lg:px-8">
           <div className="flex min-w-0 flex-wrap items-center gap-x-5 gap-y-1">
             <a
-              href="tel:+15551234567"
+              href="tel:+917088671662"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
             >
               <Phone className="size-3.5 shrink-0 text-brand" />
@@ -161,7 +187,7 @@ export function SiteHeader() {
             </a>
             <a
               href="mailto:info@justaclick.com"
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+              className="inline-flex max-w-full items-center gap-1.5 transition-colors hover:text-white"
             >
               <Mail className="size-3.5 shrink-0 text-brand" />
               <span className="truncate">
@@ -171,7 +197,7 @@ export function SiteHeader() {
             </a>
           </div>
 
-          <div className="hidden items-center gap-1 sm:flex">
+          <div className="flex shrink-0 items-center gap-1">
             {socialLinks.map(({ href, label, Icon }) => (
               <a
                 key={label}
@@ -188,10 +214,10 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className="flex w-full min-h-[74px] items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1400px] min-h-[64px] items-center gap-2 px-3 py-2.5 sm:min-h-[74px] sm:gap-3 sm:px-6 sm:py-3 lg:px-8">
         <Link
           href="/"
-          className="relative z-10 block h-10 w-[150px] shrink-0 bg-transparent sm:h-11 sm:w-[180px]"
+          className="relative z-10 block h-9 w-[130px] shrink-0 bg-transparent sm:h-11 sm:w-[180px]"
         >
           <Image
             src="/logo/justaclick-logo.png"

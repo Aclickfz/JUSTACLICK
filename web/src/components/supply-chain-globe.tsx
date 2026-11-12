@@ -81,15 +81,16 @@ export function SupplyChainGlobe() {
       root = am5.Root.new(chartRef.current);
       root._logo?.dispose();
 
-      const brand = am5.color(0x2d9ca3);
-      const brandDark = am5.color(0x1a6f75);
-      const brandSoft = am5.color(0x7ec8cd);
-      const ink = am5.color(0x1a2332);
-      const mist = am5.color(0xedf2f5);
-      const land = am5.color(0xf4f8fa);
-      const producerFill = am5.color(0x3aa8a0);
-      const hubFill = am5.color(0x5b8fa8);
-      const consumerFill = am5.color(0xb7d4dc);
+      // Site theme: navy + orange
+      const brand = am5.color(0xf97316);
+      const brandDark = am5.color(0xea580c);
+      const brandSoft = am5.color(0xfdba74);
+      const ink = am5.color(0x0b1220);
+      const mist = am5.color(0xf7f8fb);
+      const land = am5.color(0xeef1f6);
+      const producerFill = am5.color(0xf97316);
+      const hubFill = am5.color(0x0b1220);
+      const consumerFill = am5.color(0xfdba74);
 
       const siteTheme = am5.Theme.new(root);
       siteTheme.rule("InterfaceColors").setAll({
@@ -134,7 +135,7 @@ export function SupplyChainGlobe() {
 
       const bgSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {}));
       bgSeries.mapPolygons.template.setAll({
-        fill: am5.color(0xe4eef1),
+        fill: am5.color(0xe8ebf0),
         fillOpacity: 1,
         strokeOpacity: 0,
       });
@@ -415,7 +416,7 @@ export function SupplyChainGlobe() {
 
   return (
     <section className="relative overflow-hidden py-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,oklch(0.58_0.11_195_/_0.1),transparent_45%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgb(249_115_22_/_0.12),transparent_45%)]" />
       <div className="section-shell relative">
         <SectionHeading
           title="Global"
@@ -425,13 +426,13 @@ export function SupplyChainGlobe() {
 
         <div className="mb-6 flex flex-wrap gap-4 text-sm">
           <span className="inline-flex items-center gap-2 text-muted-foreground">
-            <span className="size-3 bg-[#3aa8a0]" /> Manufacturing
+            <span className="size-3 rounded-sm bg-brand" /> Manufacturing
           </span>
           <span className="inline-flex items-center gap-2 text-muted-foreground">
-            <span className="size-3 bg-[#5b8fa8]" /> Logistics hubs
+            <span className="size-3 rounded-sm bg-navy" /> Logistics hubs
           </span>
           <span className="inline-flex items-center gap-2 text-muted-foreground">
-            <span className="size-3 bg-[#b7d4dc]" /> Markets
+            <span className="size-3 rounded-sm bg-[#fdba74]" /> Markets
           </span>
         </div>
 
