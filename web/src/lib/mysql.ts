@@ -45,18 +45,19 @@ export function getPool() {
   return cached.pool;
 }
 
+type QueryParams = Record<string, string | number | boolean | Date | null> | Array<
+  string | number | boolean | Date | null
+>;
+
 export async function queryRows<T extends RowDataPacket[]>(
   sql: string,
-  params?: Record<string, unknown> | unknown[]
+  params?: QueryParams
 ) {
   const [rows] = await getPool().query<T>(sql, params);
   return rows;
 }
 
-export async function execute(
-  sql: string,
-  params?: Record<string, unknown> | unknown[]
-) {
+export async function execute(sql: string, params?: QueryParams) {
   const [result] = await getPool().execute<ResultSetHeader>(sql, params);
   return result;
 }
