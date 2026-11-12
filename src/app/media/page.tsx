@@ -253,7 +253,7 @@ export default function MediaPage() {
                   <Mail className="size-5" /> press@justaclick.com
                 </p>
                 <p className="flex items-center gap-3">
-                  <Phone className="size-5" /> +1 (555) 123-4567
+                  <Phone className="size-5" /> +91 7088671662
                 </p>
                 <p className="flex items-center gap-3">
                   <Timer className="size-5" /> Response time: within 24 hours
