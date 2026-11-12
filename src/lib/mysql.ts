@@ -24,7 +24,7 @@ export function isMysqlConfigured() {
 export function getPool() {
   if (!isMysqlConfigured()) {
     throw new Error(
-      "MySQL is not configured. Set MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE in web/.env.local."
+      "MySQL is not configured. Set MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE in .env.local."
     );
   }
 

@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error:
-            "Database is not configured. Add MYSQL_* values in web/.env.local.",
+            "Database is not configured. Add MYSQL_* values in .env.local.",
         },
         { status: 503 }
       );

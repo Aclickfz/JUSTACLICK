@@ -29,7 +29,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error:
-            "Contact is not configured. Add SMTP_* or MYSQL_* in web/.env.local.",
+            "Contact is not configured. Add SMTP_* or MYSQL_* in .env.local.",
         },
         { status: 503 }
       );
