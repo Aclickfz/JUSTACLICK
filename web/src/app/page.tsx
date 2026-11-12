@@ -5,6 +5,7 @@ import { HomeHero } from "@/components/home-hero";
 import { WorkflowTabs } from "@/components/workflow-tabs";
 import { StatsCounters } from "@/components/stats-counters";
 import { ContactForm } from "@/components/contact-form";
+import { SupplyChainGlobe } from "@/components/supply-chain-globe";
 import { SectionHeading } from "@/components/section-heading";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -172,6 +173,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <SupplyChainGlobe />
 
       <ContactForm />
     </>

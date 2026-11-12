@@ -16,7 +16,7 @@ export function PageHero({
   imageAlt = "",
 }: PageHeroProps) {
   return (
-    <section className="relative isolate flex min-h-[48vh] items-end overflow-hidden pt-24 sm:min-h-[56vh]">
+    <section className="relative isolate flex min-h-[48vh] items-end overflow-hidden pt-28 sm:min-h-[56vh] sm:pt-32">
       <Image
         src={imageUrl}
         alt={imageAlt || title}
@@ -26,7 +26,7 @@ export function PageHero({
         sizes="100vw"
       />
       <div className="hero-overlay absolute inset-0" />
-      <div className="section-shell relative z-10 w-full pb-14 pt-24">
+      <div className="section-shell relative z-10 w-full pb-14 pt-16">
         {eyebrow ? (
           <p className="mb-4 text-xs font-semibold tracking-[0.2em] text-brand uppercase">
             {eyebrow}

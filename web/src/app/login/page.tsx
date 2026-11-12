@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-mist/80 pb-16 pt-32">
+    <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-mist/80 pb-16 pt-40">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.58 0.11 195 / 0.12),transparent_45%)]" />
       <div className="section-shell relative">
         <Card className="mx-auto w-full max-w-md border-border/70 shadow-xl">

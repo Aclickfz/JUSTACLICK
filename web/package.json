@@ -10,6 +10,8 @@
     "seed": "tsx --env-file=.env.local src/data/seed.ts"
   },
   "dependencies": {
+    "@amcharts/amcharts5": "^5.21.5",
+    "@amcharts/amcharts5-geodata": "^5.1.6",
     "@base-ui/react": "^1.9.0",
     "@hookform/resolvers": "^7.0.6",
     "bcryptjs": "^3.0.3",
