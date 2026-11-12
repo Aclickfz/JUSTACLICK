@@ -1,4 +1,4 @@
--- Just A Click — MySQL schema  
+-- Just A Click — MySQL schema 
 -- Run once: mysql -u root -p < sql/01_schema.sql
 
 CREATE DATABASE IF NOT EXISTS justaclick
