@@ -53,8 +53,8 @@ export function SiteFooter() {
             Contact
           </h4>
           <ul className="space-y-3 text-sm text-white/65">
-            <li>Email: info@justaclick.com</li>
-            <li>Phone: +1 (555) 123-4567</li>
+            <li>Email:aclickfz@gmail.com</li>
+            <li>Phone: +91 7088671662</li>
             <li>Global operations & partner network</li>
           </ul>
         </div>

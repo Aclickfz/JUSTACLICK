@@ -11,7 +11,7 @@ export function HomeHero() {
   const { hero } = homeContent;
 
   return (
-    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden pb-16 pt-28 sm:items-center sm:pb-0 sm:pt-32">
+    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden pb-16 pt-36 sm:items-center sm:pb-0 sm:pt-40">
       <Image
         src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=80"
         alt="Global supply chain warehouse operations"

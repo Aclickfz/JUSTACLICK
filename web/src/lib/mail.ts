@@ -64,8 +64,8 @@ function brandShell(title: string, body: string) {
       <td align="center">
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;">
           <tr>
-            <td style="background:linear-gradient(135deg,#0f766e,#134e4a);padding:28px 32px;">
-              <p style="margin:0;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#99f6e4;">Just A Click</p>
+            <td style="background:linear-gradient(135deg,#0b1220,#070d18);padding:28px 32px;">
+              <p style="margin:0;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#f97316;">Just A Click</p>
               <h1 style="margin:8px 0 0;font-size:24px;line-height:1.3;color:#ffffff;">${escapeHtml(title)}</h1>
             </td>
           </tr>

@@ -118,8 +118,8 @@ export function WorkflowTabs() {
 
               <defs>
                 <linearGradient id="cycleStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="oklch(0.7 0.1 195)" />
-                  <stop offset="100%" stopColor="oklch(0.5 0.12 195)" />
+                  <stop offset="0%" stopColor="#fb923c" />
+                  <stop offset="100%" stopColor="#f97316" />
                 </linearGradient>
                 <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
                   <feGaussianBlur stdDeviation="3" result="blur" />
@@ -144,8 +144,8 @@ export function WorkflowTabs() {
                         setPlaying(false);
                       }}
                       className="cursor-pointer"
-                      fill={isActive || isDone ? "oklch(0.58 0.11 195)" : "oklch(0.99 0.004 230)"}
-                      stroke={isActive || isDone ? "oklch(0.58 0.11 195)" : "oklch(0.78 0.02 230)"}
+                      fill={isActive || isDone ? "#f97316" : "#ffffff"}
+                      stroke={isActive || isDone ? "#f97316" : "#d8dee8"}
                       strokeWidth={isActive ? 3 : 2}
                       filter={isActive ? "url(#nodeGlow)" : undefined}
                       animate={{
@@ -204,11 +204,11 @@ export function WorkflowTabs() {
                 style={{
                   fontSize: 28,
                   fontWeight: 800,
-                  fill: "oklch(0.58 0.11 195)",
+                  fill: "#f97316",
                 }}
               >
                 {String(active + 1).padStart(2, "0")}
-                <tspan style={{ fill: "oklch(0.55 0.02 250)", fontSize: 16 }}>
+                <tspan style={{ fill: "#64748b", fontSize: 16 }}>
                   /{String(count).padStart(2, "0")}
                 </tspan>
               </text>

@@ -16,7 +16,7 @@ export function PageHero({
   imageAlt = "",
 }: PageHeroProps) {
   return (
-    <section className="relative isolate flex min-h-[48vh] items-end overflow-hidden pt-28 sm:min-h-[56vh] sm:pt-32">
+    <section className="relative isolate flex min-h-[48vh] items-end overflow-hidden pt-36 sm:min-h-[56vh] sm:pt-40">
       <Image
         src={imageUrl}
         alt={imageAlt || title}

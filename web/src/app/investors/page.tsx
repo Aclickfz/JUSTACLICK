@@ -394,7 +394,7 @@ export default function InvestorsPage() {
             <div className="flex flex-col items-center gap-2">
               <Phone className="size-6" />
               <p className="font-semibold">Phone</p>
-              <p className="text-white/70">+1 (555) 123-4567</p>
+              <p className="text-white/70">+91 7088671662</p>
             </div>
             <div className="flex flex-col items-center gap-2">
               <MapPin className="size-6" />
