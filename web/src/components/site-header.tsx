@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu } from "lucide-react";
@@ -80,23 +81,21 @@ export function SiteHeader() {
       )}
     >
       <div className="flex w-full min-h-[76px] items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="min-w-0 shrink-0">
-          <span
+        <Link
+          href="/"
+          className="relative z-10 block h-10 w-[150px] shrink-0 bg-transparent sm:h-11 sm:w-[180px]"
+        >
+          <Image
+            src="/logo/justaclick-logo.png"
+            alt="JustAClick"
+            fill
+            priority
+            sizes="180px"
             className={cn(
-              "font-heading block text-xl font-bold tracking-tight sm:text-2xl",
-              solid ? "text-ink" : "text-white drop-shadow-sm"
+              "bg-transparent object-contain object-left transition-[filter] duration-300",
+              !solid && "brightness-0 invert"
             )}
-          >
-            Just A Click
-          </span>
-          <span
-            className={cn(
-              "mt-0.5 block text-[10px] font-medium tracking-[0.14em] uppercase sm:text-[11px]",
-              solid ? "text-brand" : "text-white/75"
-            )}
-          >
-            And Lets Grow Together
-          </span>
+          />
         </Link>
 
         <Menubar
@@ -212,9 +211,15 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[340px]">
               <SheetHeader>
-                <SheetTitle className="font-heading text-left text-2xl">
-                  Just A Click
-                </SheetTitle>
+                <SheetTitle className="sr-only">Just A Click menu</SheetTitle>
+                <div className="relative h-9 w-[150px] bg-transparent">
+                  <Image
+                    src="/logo/justaclick-logo.png"
+                    alt="JustAClick"
+                    fill
+                    className="bg-transparent object-contain object-left"
+                  />
+                </div>
               </SheetHeader>
               <div className="mt-6 flex flex-col gap-1">
                 {mobileLinks.map((link) => (

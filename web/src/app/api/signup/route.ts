@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { connectDB, isMongoConfigured } from "@/lib/mongodb";
-import { User } from "@/models/User";
+import { createUser, findUserByEmail, isMysqlConfigured } from "@/lib/db";
+import type { UserRole } from "@/models/User";
 
 export async function POST(request: Request) {
   try {
@@ -15,18 +15,17 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!isMongoConfigured()) {
+    if (!isMysqlConfigured()) {
       return NextResponse.json(
         {
           error:
-            "Database is not configured. Add your MONGODB_URI in web/.env.local.",
+            "Database is not configured. Add MYSQL_* values in web/.env.local.",
         },
         { status: 503 }
       );
     }
 
-    await connectDB();
-    const existing = await User.findOne({ email: String(email).toLowerCase() });
+    const existing = await findUserByEmail(String(email).toLowerCase());
     if (existing) {
       return NextResponse.json(
         { error: "An account with this email already exists." },
@@ -35,12 +34,12 @@ export async function POST(request: Request) {
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-    await User.create({
+    await createUser({
       name,
       email: String(email).toLowerCase(),
       passwordHash,
       company,
-      role: role || "buyer",
+      role: (role as UserRole) || "buyer",
     });
 
     return NextResponse.json({ ok: true });

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { connectDB, isMongoConfigured } from "@/lib/mongodb";
-import { NewsletterSubscriber } from "@/models/Contact";
+import { isMysqlConfigured, upsertNewsletterSubscriber } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
@@ -9,22 +8,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Email is required." }, { status: 400 });
     }
 
-    if (!isMongoConfigured()) {
+    if (!isMysqlConfigured()) {
       return NextResponse.json(
         {
           error:
-            "Database is not configured. Add your MONGODB_URI in web/.env.local.",
+            "Database is not configured. Add MYSQL_* values in web/.env.local.",
         },
         { status: 503 }
       );
     }
 
-    await connectDB();
-    await NewsletterSubscriber.findOneAndUpdate(
-      { email: String(email).toLowerCase() },
-      { email: String(email).toLowerCase() },
-      { upsert: true, new: true }
-    );
+    await upsertNewsletterSubscriber(String(email).toLowerCase());
 
     return NextResponse.json({ ok: true });
   } catch (error) {

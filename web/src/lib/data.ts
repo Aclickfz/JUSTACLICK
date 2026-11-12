@@ -1,4 +1,3 @@
-import { connectDB, isMongoConfigured } from "@/lib/mongodb";
 import {
   featuredProducts,
   jobOpenings,
@@ -7,16 +6,20 @@ import {
   pressReleases,
   productCategories,
 } from "@/data/seed-data";
-import { Product, ProductCategory } from "@/models/Product";
-import { PortfolioItem } from "@/models/Portfolio";
-import { NewsPost, PressRelease } from "@/models/News";
-import { JobOpening } from "@/models/Career";
+import {
+  isMysqlConfigured,
+  listFeaturedProducts,
+  listJobOpenings,
+  listNewsPosts,
+  listPortfolioItems,
+  listPressReleases,
+  listProductCategories,
+} from "@/lib/db";
 
 export async function getProductCategories() {
-  if (!isMongoConfigured()) return productCategories;
+  if (!isMysqlConfigured()) return productCategories;
   try {
-    await connectDB();
-    const docs = await ProductCategory.find().lean();
+    const docs = await listProductCategories();
     return docs.length ? docs : productCategories;
   } catch {
     return productCategories;
@@ -24,10 +27,9 @@ export async function getProductCategories() {
 }
 
 export async function getFeaturedProducts() {
-  if (!isMongoConfigured()) return featuredProducts;
+  if (!isMysqlConfigured()) return featuredProducts;
   try {
-    await connectDB();
-    const docs = await Product.find({ featured: true }).lean();
+    const docs = await listFeaturedProducts();
     return docs.length ? docs : featuredProducts;
   } catch {
     return featuredProducts;
@@ -35,10 +37,9 @@ export async function getFeaturedProducts() {
 }
 
 export async function getPortfolioItems() {
-  if (!isMongoConfigured()) return portfolioItems;
+  if (!isMysqlConfigured()) return portfolioItems;
   try {
-    await connectDB();
-    const docs = await PortfolioItem.find().lean();
+    const docs = await listPortfolioItems();
     return docs.length ? docs : portfolioItems;
   } catch {
     return portfolioItems;
@@ -46,10 +47,9 @@ export async function getPortfolioItems() {
 }
 
 export async function getNewsPosts() {
-  if (!isMongoConfigured()) return newsPosts;
+  if (!isMysqlConfigured()) return newsPosts;
   try {
-    await connectDB();
-    const docs = await NewsPost.find().sort({ publishedAt: -1 }).lean();
+    const docs = await listNewsPosts();
     return docs.length ? docs : newsPosts;
   } catch {
     return newsPosts;
@@ -57,10 +57,9 @@ export async function getNewsPosts() {
 }
 
 export async function getPressReleases() {
-  if (!isMongoConfigured()) return pressReleases;
+  if (!isMysqlConfigured()) return pressReleases;
   try {
-    await connectDB();
-    const docs = await PressRelease.find().sort({ publishedAt: -1 }).lean();
+    const docs = await listPressReleases();
     return docs.length ? docs : pressReleases;
   } catch {
     return pressReleases;
@@ -68,10 +67,9 @@ export async function getPressReleases() {
 }
 
 export async function getJobOpenings() {
-  if (!isMongoConfigured()) return jobOpenings;
+  if (!isMysqlConfigured()) return jobOpenings;
   try {
-    await connectDB();
-    const docs = await JobOpening.find().lean();
+    const docs = await listJobOpenings();
     return docs.length ? docs : jobOpenings;
   } catch {
     return jobOpenings;

@@ -1,8 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { connectDB, isMongoConfigured } from "@/lib/mongodb";
-import { User } from "@/models/User";
+import { findUserByEmail, isMysqlConfigured } from "@/lib/db";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
@@ -14,7 +13,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!isMongoConfigured()) {
+        if (!isMysqlConfigured()) {
           throw new Error("Database is not configured.");
         }
 
@@ -25,15 +24,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (!email || !password) return null;
 
-        await connectDB();
-        const user = await User.findOne({ email });
+        const user = await findUserByEmail(email);
         if (!user) return null;
 
         const valid = await bcrypt.compare(password, user.passwordHash);
         if (!valid) return null;
 
         return {
-          id: String(user._id),
+          id: String(user.id),
           email: user.email,
           name: user.name,
           role: user.role,

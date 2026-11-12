@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ChatContactWidget } from "@/components/chat-contact-widget";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
@@ -20,7 +21,12 @@ export const metadata: Metadata = {
   description:
     "We Design, Manufacture & Deliver Worldwide. Your complete home furnishing partner.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/logo/justaclick-logo.png", type: "image/png" },
+    ],
+    apple: "/favicon.png",
+    shortcut: "/favicon.png",
   },
 };
 
@@ -36,6 +42,7 @@ export default function RootLayout({
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <ChatContactWidget />
           <Toaster richColors position="top-right" />
         </Providers>
       </body>

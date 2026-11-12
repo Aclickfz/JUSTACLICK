@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 
@@ -14,9 +15,15 @@ export function SiteFooter() {
     <footer className="border-t border-white/10 bg-ink text-white">
       <div className="section-shell grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-1">
-          <h3 className="font-heading text-3xl font-bold tracking-tight">
-            Just A Click
-          </h3>
+          <Link href="/" className="relative mb-4 block h-10 w-[170px] bg-transparent">
+            <Image
+              src="/logo/justaclick-logo.png"
+              alt="JustAClick"
+              fill
+              sizes="170px"
+              className="bg-transparent object-contain object-left brightness-0 invert"
+            />
+          </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">
             Your complete home furnishing partner — designing, manufacturing,
             and delivering worldwide with a supply chain built for growth.

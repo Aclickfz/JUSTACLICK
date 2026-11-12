@@ -1,9 +1,19 @@
 import "dotenv/config";
-import { connectDB, isMongoConfigured } from "@/lib/mongodb";
-import { Product, ProductCategory } from "@/models/Product";
-import { PortfolioItem } from "@/models/Portfolio";
-import { NewsPost, PressRelease } from "@/models/News";
-import { JobOpening } from "@/models/Career";
+import { config } from "dotenv";
+import { resolve } from "path";
+
+config({ path: resolve(process.cwd(), ".env.local") });
+
+import {
+  clearCatalogTables,
+  isMysqlConfigured,
+  seedJobOpening,
+  seedNewsPost,
+  seedPortfolioItem,
+  seedPressRelease,
+  seedProduct,
+  seedProductCategory,
+} from "@/lib/db";
 import {
   featuredProducts,
   jobOpenings,
@@ -14,32 +24,41 @@ import {
 } from "@/data/seed-data";
 
 async function seed() {
-  if (!isMongoConfigured()) {
+  if (!isMysqlConfigured()) {
     console.error(
-      "Set a real MONGODB_URI in .env.local before running the seed script."
+      "Set MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE in .env.local before seeding."
     );
     process.exit(1);
   }
 
-  await connectDB();
+  await clearCatalogTables();
 
-  await Promise.all([
-    ProductCategory.deleteMany({}),
-    Product.deleteMany({}),
-    PortfolioItem.deleteMany({}),
-    NewsPost.deleteMany({}),
-    PressRelease.deleteMany({}),
-    JobOpening.deleteMany({}),
-  ]);
+  for (const item of productCategories) {
+    await seedProductCategory(item);
+  }
+  for (const item of featuredProducts) {
+    await seedProduct(item);
+  }
+  for (const item of portfolioItems) {
+    await seedPortfolioItem(item);
+  }
+  for (const item of newsPosts) {
+    await seedNewsPost({
+      ...item,
+      publishedAt: new Date(item.publishedAt),
+    });
+  }
+  for (const item of pressReleases) {
+    await seedPressRelease({
+      ...item,
+      publishedAt: new Date(item.publishedAt),
+    });
+  }
+  for (const item of jobOpenings) {
+    await seedJobOpening(item);
+  }
 
-  await ProductCategory.insertMany(productCategories);
-  await Product.insertMany(featuredProducts);
-  await PortfolioItem.insertMany(portfolioItems);
-  await NewsPost.insertMany(newsPosts);
-  await PressRelease.insertMany(pressReleases);
-  await JobOpening.insertMany(jobOpenings);
-
-  console.log("Seed completed successfully.");
+  console.log("MySQL seed completed successfully.");
   process.exit(0);
 }
 
