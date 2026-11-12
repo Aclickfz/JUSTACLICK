@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -12,7 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const primaryLinks = [
   { href: "/", label: "Home" },
@@ -36,47 +36,94 @@ const moreLinks = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const lightTop = pathname === "/login" || pathname === "/signup";
+  const solid = scrolled || lightTop;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-white/90 backdrop-blur-md">
-      <div className="section-shell flex min-h-[80px] items-center justify-between gap-4 py-3">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        solid
+          ? "border-b border-border/70 bg-background/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      )}
+    >
+      <div className="section-shell flex min-h-[76px] items-center justify-between gap-4 py-3">
         <Link href="/" className="min-w-0 shrink-0">
-          <span className="font-heading block text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl">
+          <span
+            className={cn(
+              "font-heading block text-xl font-bold tracking-tight sm:text-2xl md:text-[1.75rem]",
+              solid ? "text-ink" : "text-white drop-shadow-sm"
+            )}
+          >
             Just A Click
           </span>
-          <span className="mt-0.5 block text-[10px] font-medium text-red-800 sm:text-xs">
+          <span
+            className={cn(
+              "mt-0.5 block text-[10px] font-medium tracking-[0.14em] uppercase sm:text-[11px]",
+              solid ? "text-brand" : "text-white/75"
+            )}
+          >
             And Lets Grow Together
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex">
-          {primaryLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                pathname === link.href
-                  ? "bg-red-50 text-red-900"
-                  : "text-muted-foreground hover:text-red-900"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-1 xl:flex">
+          {primaryLinks.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "relative px-2.5 py-2 text-[13px] font-medium transition-colors",
+                  solid
+                    ? active
+                      ? "text-ink"
+                      : "text-muted-foreground hover:text-ink"
+                    : active
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
+                )}
+              >
+                {link.label}
+                {active ? (
+                  <span
+                    className={cn(
+                      "absolute inset-x-2 -bottom-0.5 h-px",
+                      solid ? "bg-brand" : "bg-white"
+                    )}
+                  />
+                ) : null}
+              </Link>
+            );
+          })}
           <div className="group relative">
             <button
               type="button"
-              className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-red-900"
+              className={cn(
+                "flex items-center px-2.5 py-2 text-[13px] font-medium transition-colors",
+                solid
+                  ? "text-muted-foreground hover:text-ink"
+                  : "text-white/70 hover:text-white"
+              )}
             >
-              More <ChevronDown className="ml-1 size-3" />
+              More <ChevronDown className="ml-1 size-3.5 opacity-70" />
             </button>
-            <div className="invisible absolute left-0 top-full z-50 mt-2 w-56 rounded-lg border border-border bg-white py-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100">
+            <div className="invisible absolute right-0 top-full z-50 mt-2 w-60 border border-border bg-card py-2 opacity-0 shadow-[0_20px_50px_rgba(15,23,42,0.12)] transition-all group-hover:visible group-hover:opacity-100">
               {moreLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block px-4 py-2 text-sm text-foreground transition-colors hover:bg-red-50 hover:text-red-900"
+                  className="block px-4 py-2.5 text-sm text-foreground transition-colors hover:bg-mist hover:text-brand"
                 >
                   {link.label}
                 </Link>
@@ -90,7 +137,10 @@ export function SiteHeader() {
             href="/login"
             className={cn(
               buttonVariants({ size: "default" }),
-              "hidden bg-gradient-to-r from-red-500 to-red-600 text-white shadow-md hover:from-red-600 hover:to-red-700 sm:inline-flex"
+              "hidden h-9 px-5 text-sm font-semibold sm:inline-flex",
+              solid
+                ? "btn-brand"
+                : "border border-white/30 bg-white/10 text-white backdrop-blur hover:bg-white hover:text-ink"
             )}
           >
             Login
@@ -100,7 +150,8 @@ export function SiteHeader() {
             <SheetTrigger
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "lg:hidden"
+                "xl:hidden",
+                !solid && "text-white hover:bg-white/10 hover:text-white"
               )}
             >
               <Menu className="size-5" />
@@ -108,7 +159,7 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[340px]">
               <SheetHeader>
-                <SheetTitle className="font-heading text-left">
+                <SheetTitle className="font-heading text-left text-2xl">
                   Just A Click
                 </SheetTitle>
               </SheetHeader>
@@ -119,10 +170,10 @@ export function SiteHeader() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "rounded-md px-3 py-2 text-base font-medium transition-colors",
+                      "rounded-md px-3 py-2.5 text-base font-medium transition-colors",
                       pathname === link.href
-                        ? "bg-red-50 text-red-900"
-                        : "text-foreground hover:bg-red-50 hover:text-red-900"
+                        ? "bg-brand/10 text-brand"
+                        : "text-foreground hover:bg-mist"
                     )}
                   >
                     {link.label}
@@ -133,7 +184,7 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   className={cn(
                     buttonVariants(),
-                    "mt-4 bg-gradient-to-r from-red-500 to-red-600 text-center text-white"
+                    "btn-brand mt-4 text-center"
                   )}
                 >
                   Login

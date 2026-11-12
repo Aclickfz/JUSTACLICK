@@ -152,7 +152,7 @@ export default function InvestorsPage() {
                 <ul className="mt-5 space-y-3">
                   {story.map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-red-500" />
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-brand" />
                       {item}
                     </li>
                   ))}
@@ -173,7 +173,7 @@ export default function InvestorsPage() {
                         <TableCell className="py-3 text-muted-foreground">
                           {metric.label}
                         </TableCell>
-                        <TableCell className="py-3 text-right font-heading text-lg font-bold text-red-700">
+                        <TableCell className="py-3 text-right font-heading text-lg font-bold text-brand">
                           {metric.value}
                         </TableCell>
                       </TableRow>
@@ -186,7 +186,7 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Annual"
@@ -225,7 +225,7 @@ export default function InvestorsPage() {
                           href="#"
                           className={cn(
                             buttonVariants({ size: "sm" }),
-                            "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+                            "btn-brand"
                           )}
                         >
                           <Download className="size-3.5" />
@@ -266,7 +266,7 @@ export default function InvestorsPage() {
                         <TableCell className="py-3 text-muted-foreground">
                           {row.detail}
                         </TableCell>
-                        <TableCell className="py-3 text-right font-semibold text-red-700">
+                        <TableCell className="py-3 text-right font-semibold text-brand">
                           View →
                         </TableCell>
                       </TableRow>
@@ -292,7 +292,7 @@ export default function InvestorsPage() {
                         <TableCell className="py-3 text-muted-foreground">
                           {row.detail}
                         </TableCell>
-                        <TableCell className="py-3 text-right font-semibold text-red-700">
+                        <TableCell className="py-3 text-right font-semibold text-brand">
                           Listen →
                         </TableCell>
                       </TableRow>
@@ -305,7 +305,7 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Stock"
@@ -376,12 +376,12 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20 text-white">
+      <section className="bg-ink py-20 text-white">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold sm:text-4xl">
             Investor Relations
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             For investor inquiries, financial information requests, or to
             schedule a meeting with our investor relations team.
           </p>
@@ -389,24 +389,24 @@ export default function InvestorsPage() {
             <div className="flex flex-col items-center gap-2">
               <Mail className="size-6" />
               <p className="font-semibold">Email</p>
-              <p className="text-red-100">investors@justaclick.com</p>
+              <p className="text-white/70">investors@justaclick.com</p>
             </div>
             <div className="flex flex-col items-center gap-2">
               <Phone className="size-6" />
               <p className="font-semibold">Phone</p>
-              <p className="text-red-100">+1 (555) 123-4567</p>
+              <p className="text-white/70">+1 (555) 123-4567</p>
             </div>
             <div className="flex flex-col items-center gap-2">
               <MapPin className="size-6" />
               <p className="font-semibold">Address</p>
-              <p className="text-red-100">123 Business Ave, Suite 100</p>
+              <p className="text-white/70">123 Business Ave, Suite 100</p>
             </div>
           </div>
           <a
             href="mailto:investors@justaclick.com"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "mt-10 h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+              "mt-10 h-11 bg-white px-6 text-brand hover:bg-brand/10"
             )}
           >
             Contact Investor Relations

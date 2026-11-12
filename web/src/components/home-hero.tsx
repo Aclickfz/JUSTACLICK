@@ -11,47 +11,55 @@ export function HomeHero() {
   const { hero } = homeContent;
 
   return (
-    <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-20">
+    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden pb-16 pt-28 sm:items-center sm:pb-0">
       <Image
-        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2000&q=80"
+        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=80"
         alt="Global supply chain warehouse operations"
         fill
         priority
-        className="object-cover"
+        className="object-cover object-center"
         sizes="100vw"
       />
       <div className="hero-overlay absolute inset-0" />
-      <div className="section-shell relative z-10 py-16 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent sm:hidden" />
+
+      <div className="section-shell relative z-10 w-full py-10 sm:py-20">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="font-heading mx-auto max-w-5xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+          transition={{ duration: 0.55 }}
+          className="mb-5 text-xs font-semibold tracking-[0.22em] text-brand uppercase sm:text-sm"
+        >
+          Just A Click
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.05 }}
+          className="font-heading max-w-4xl text-4xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl"
         >
           {hero.titleBefore}{" "}
-          <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
-            {hero.titleAccent}
-          </span>
+          <span className="text-gradient">{hero.titleAccent}</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="mx-auto mt-6 max-w-3xl text-lg font-medium text-red-100 sm:text-xl md:text-2xl"
+          transition={{ duration: 0.65, delay: 0.18 }}
+          className="mt-6 max-w-xl text-base text-white/75 sm:text-xl"
         >
           {hero.subtitle}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.28 }}
-          className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+          transition={{ duration: 0.65, delay: 0.3 }}
+          className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
         >
           <Link
             href="#start"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "bg-gradient-to-r from-red-500 to-red-600 px-8 text-base font-bold text-white shadow-2xl hover:from-red-600 hover:to-red-700"
+              "btn-brand h-12 px-8 text-base font-semibold"
             )}
           >
             {hero.primaryCta}
@@ -60,7 +68,7 @@ export function HomeHero() {
             href="#workflow"
             className={cn(
               buttonVariants({ size: "lg", variant: "outline" }),
-              "border-white/80 bg-white/10 px-8 text-base font-bold text-white backdrop-blur hover:bg-white hover:text-red-900"
+              "h-12 border-white/35 bg-transparent px-8 text-base font-semibold text-white hover:bg-white hover:text-ink"
             )}
           >
             {hero.secondaryCta}

@@ -56,8 +56,8 @@ export default async function PortfolioPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-zinc-50 py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.08),transparent_45%)]" />
+      <section className="relative overflow-hidden bg-mist/80 py-20">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.58 0.11 195 / 0.1),transparent_45%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Featured"
@@ -75,7 +75,7 @@ export default async function PortfolioPage() {
               />
             </div>
             <CardContent className="space-y-5 p-6 sm:p-10 lg:w-1/2">
-              <Badge className="bg-red-100 text-red-800 hover:bg-red-100">
+              <Badge className="bg-brand/15 text-brand hover:bg-brand/15">
                 Case Study
               </Badge>
               <h3 className="font-heading text-2xl font-bold sm:text-3xl">
@@ -91,7 +91,7 @@ export default async function PortfolioPage() {
                 {featuredStats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-xl border border-red-100 bg-red-50/60 p-4"
+                    className="rounded-none border border-brand/20 bg-brand/10 p-4"
                   >
                     <p className="text-gradient font-heading text-3xl font-bold">
                       {stat.value}
@@ -106,7 +106,7 @@ export default async function PortfolioPage() {
                 href="/services"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+                  "btn-brand"
                 )}
               >
                 View Case Study
@@ -116,12 +116,12 @@ export default async function PortfolioPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20">
+      <section className="bg-ink py-20">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to Start Your Project?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Let us help you create something extraordinary. From concept to
             completion, we&apos;re here to bring your vision to life.
           </p>
@@ -130,7 +130,7 @@ export default async function PortfolioPage() {
               href="/products"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+                "h-11 bg-white px-6 text-brand hover:bg-brand/10"
               )}
             >
               View Full Portfolio
@@ -139,7 +139,7 @@ export default async function PortfolioPage() {
               href="/services#contact"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Request a Quote
@@ -148,7 +148,7 @@ export default async function PortfolioPage() {
               href="/suppliers"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Partner with Us

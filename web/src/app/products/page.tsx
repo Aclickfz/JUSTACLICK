@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 const gradient =
-  "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700";
+  "btn-brand";
 
 export default async function ProductsPage() {
   const [categoryDocs, productDocs] = await Promise.all([
@@ -39,7 +39,7 @@ export default async function ProductsPage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(220,38,38,0.06),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.58 0.11 195 / 0.08),transparent_40%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Product"
@@ -62,7 +62,7 @@ export default async function ProductsPage() {
                   />
                 </div>
                 <CardHeader>
-                  <Badge className="w-fit bg-red-100 text-red-800 hover:bg-red-100">
+                  <Badge className="w-fit bg-brand/15 text-brand hover:bg-brand/15">
                     {category.badge}
                   </Badge>
                   <CardTitle className="font-heading text-lg font-bold">
@@ -79,7 +79,7 @@ export default async function ProductsPage() {
                         key={item}
                         className="flex items-center gap-2 text-sm"
                       >
-                        <CheckCircle2 className="size-3.5 shrink-0 text-red-500" />
+                        <CheckCircle2 className="size-3.5 shrink-0 text-brand" />
                         {item}
                       </li>
                     ))}
@@ -88,7 +88,7 @@ export default async function ProductsPage() {
                     href="#contact"
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "mt-5 w-fit border-red-200 text-red-700 hover:bg-red-50"
+                      "mt-5 w-fit border-brand/30 text-brand hover:bg-brand/10"
                     )}
                   >
                     {category.cta}
@@ -100,7 +100,7 @@ export default async function ProductsPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Featured"
@@ -121,7 +121,7 @@ export default async function ProductsPage() {
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <Badge className="absolute left-3 top-3 bg-red-600 text-white hover:bg-red-600">
+                  <Badge className="absolute left-3 top-3 bg-brand text-white hover:bg-brand">
                     Featured
                   </Badge>
                 </div>
@@ -133,7 +133,7 @@ export default async function ProductsPage() {
                 <CardContent>
                   <p className="text-muted-foreground">{product.description}</p>
                   <div className="mt-5 flex items-center justify-between">
-                    <span className="font-heading text-2xl font-bold text-red-700">
+                    <span className="font-heading text-2xl font-bold text-brand">
                       ${product.price.toLocaleString("en-US")}
                     </span>
                     <Link
@@ -150,12 +150,12 @@ export default async function ProductsPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20">
+      <section className="bg-ink py-20">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to Explore Our Products?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Browse our extensive collection and find the perfect pieces for your
             home or business.
           </p>
@@ -164,7 +164,7 @@ export default async function ProductsPage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+                "h-11 bg-white px-6 text-brand hover:bg-brand/10"
               )}
             >
               View Full Collection
@@ -173,7 +173,7 @@ export default async function ProductsPage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Request Custom Quote
@@ -182,7 +182,7 @@ export default async function ProductsPage() {
               href="/suppliers"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Partner with Us

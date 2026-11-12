@@ -165,7 +165,7 @@ export default function InnovationPage() {
                 className="border-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <CardHeader>
-                  <div className="flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-700 font-heading font-bold text-white">
+                  <div className="flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-brand to-brand font-heading font-bold text-white">
                     {index + 1}
                   </div>
                   <CardTitle className="mt-2 font-heading text-xl font-bold">
@@ -181,8 +181,8 @@ export default function InnovationPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-zinc-50 py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.08),transparent_45%)]" />
+      <section className="relative overflow-hidden bg-mist/80 py-20">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.58 0.11 195 / 0.1),transparent_45%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="The Just A Click"
@@ -204,7 +204,7 @@ export default function InnovationPage() {
             ))}
           </div>
 
-          <Card className="mx-auto mt-10 max-w-3xl border-red-100 shadow-lg">
+          <Card className="mx-auto mt-10 max-w-3xl border-brand/20 shadow-lg">
             <CardContent className="space-y-6 text-center">
               <h3 className="font-heading text-2xl font-bold">
                 Speed Improvement
@@ -254,7 +254,7 @@ export default function InnovationPage() {
                 className="h-full border-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <CardHeader>
-                  <Badge className="w-fit bg-red-100 text-red-800 hover:bg-red-100">
+                  <Badge className="w-fit bg-brand/15 text-brand hover:bg-brand/15">
                     Platform
                   </Badge>
                   <CardTitle className="font-heading text-xl font-bold">
@@ -271,7 +271,7 @@ export default function InnovationPage() {
                         key={item}
                         className="flex items-center gap-2 text-sm"
                       >
-                        <CheckCircle2 className="size-4 shrink-0 text-red-500" />
+                        <CheckCircle2 className="size-4 shrink-0 text-brand" />
                         {item}
                       </li>
                     ))}
@@ -283,12 +283,12 @@ export default function InnovationPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20 text-white">
+      <section className="bg-ink py-20 text-white">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold sm:text-4xl">
             Our Business Impact
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Millions of consumer goods pass through Just A Click&apos;s supply
             chain every year
           </p>
@@ -296,7 +296,7 @@ export default function InnovationPage() {
             {impact.map((stat) => (
               <div key={stat.label}>
                 <p className="font-heading text-4xl font-bold">{stat.value}</p>
-                <p className="mt-1 text-red-100">{stat.label}</p>
+                <p className="mt-1 text-white/70">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -315,7 +315,7 @@ export default function InnovationPage() {
               href="/services"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+                "btn-brand"
               )}
             >
               Explore Solutions
@@ -324,7 +324,7 @@ export default function InnovationPage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "border-red-200 text-red-700 hover:bg-red-50"
+                "border-brand/30 text-brand hover:bg-brand/10"
               )}
             >
               Request Demo
@@ -333,7 +333,7 @@ export default function InnovationPage() {
               href="/suppliers"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "border-red-200 text-red-700 hover:bg-red-50"
+                "border-brand/30 text-brand hover:bg-brand/10"
               )}
             >
               Partner with Us

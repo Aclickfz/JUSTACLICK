@@ -36,21 +36,21 @@ function StatCard({
   }, []);
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur">
-      <p className="font-heading text-4xl font-bold text-white sm:text-5xl">
+    <div className="border-b border-white/10 pb-6 sm:border-b-0 sm:border-r sm:pb-0 sm:pr-6 last:border-0">
+      <p className="font-heading text-4xl font-bold tracking-tight text-white sm:text-5xl">
         {count}
-        {suffix}
+        <span className="text-brand">{suffix}</span>
       </p>
-      <p className="mt-2 text-sm text-red-100/80">{label}</p>
+      <p className="mt-2 text-sm tracking-wide text-white/55">{label}</p>
     </div>
   );
 }
 
 export function StatsCounters() {
   return (
-    <section className="relative overflow-hidden bg-zinc-950 py-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,38,38,0.2),transparent_55%)]" />
-      <div className="section-shell relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="relative overflow-hidden bg-ink py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,oklch(0.58_0.11_195_/_0.18),transparent_45%)]" />
+      <div className="section-shell relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {homeContent.stats.map((stat) => (
           <StatCard key={stat.label} {...stat} />
         ))}

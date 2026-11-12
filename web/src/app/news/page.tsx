@@ -71,7 +71,7 @@ export default async function NewsPage() {
                 </div>
                 <CardHeader>
                   <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Badge className="bg-red-100 text-red-800 hover:bg-red-100">
+                    <Badge className="bg-brand/15 text-brand hover:bg-brand/15">
                       {post.category}
                     </Badge>
                     {formatDate(post.publishedAt)}
@@ -82,7 +82,7 @@ export default async function NewsPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">{post.excerpt}</p>
-                  <span className="mt-4 inline-block text-sm font-semibold text-red-700">
+                  <span className="mt-4 inline-block text-sm font-semibold text-brand">
                     Read More →
                   </span>
                 </CardContent>
@@ -92,7 +92,7 @@ export default async function NewsPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="News"
@@ -127,7 +127,7 @@ export default async function NewsPage() {
                 className="border-border/70 transition-all hover:shadow-md"
               >
                 <CardContent className="space-y-2">
-                  <p className="text-sm font-medium text-red-700">
+                  <p className="text-sm font-medium text-brand">
                     {formatDate(release.publishedAt)}
                   </p>
                   <h3 className="font-heading text-lg font-bold">
@@ -136,7 +136,7 @@ export default async function NewsPage() {
                   <p className="text-muted-foreground">{release.excerpt}</p>
                   <Link
                     href="/media"
-                    className="inline-block text-sm font-semibold text-red-700 hover:underline"
+                    className="inline-block text-sm font-semibold text-brand hover:underline"
                   >
                     Read Full Release →
                   </Link>
@@ -147,12 +147,12 @@ export default async function NewsPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20">
+      <section className="bg-ink py-20">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Stay Updated
           </h2>
-          <p className="mx-auto mb-8 mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mb-8 mt-4 max-w-2xl text-lg text-white/70">
             Subscribe to our newsletter for the latest news, insights, and
             updates from Just A Click.
           </p>

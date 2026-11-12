@@ -145,7 +145,7 @@ export default function AboutPage() {
                 className="border-border/70 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <CardHeader>
-                  <CardTitle className="font-heading text-xl font-bold uppercase text-red-700">
+                  <CardTitle className="font-heading text-xl font-bold uppercase text-brand">
                     {value.title}
                   </CardTitle>
                 </CardHeader>
@@ -167,7 +167,7 @@ export default function AboutPage() {
               href="/purpose"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+                "btn-brand"
               )}
             >
               Our Purpose
@@ -176,7 +176,7 @@ export default function AboutPage() {
               href="/commitment"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "border-red-200 text-red-700 hover:bg-red-50"
+                "border-brand/30 text-brand hover:bg-brand/10"
               )}
             >
               Our Values
@@ -185,17 +185,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Our"
             accent="History"
             description="From startup to global leader in home furnishing supply chains"
           />
-          <ol className="relative mx-auto max-w-3xl space-y-8 border-l-2 border-red-200 pl-8">
+          <ol className="relative mx-auto max-w-3xl space-y-8 border-l-2 border-brand/30 pl-8">
             {history.map((event) => (
               <li key={event.year} className="relative">
-                <span className="absolute -left-[2.6rem] top-1 flex size-5 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-700 ring-4 ring-white" />
+                <span className="absolute -left-[2.6rem] top-1 flex size-5 items-center justify-center rounded-full bg-gradient-to-br from-brand to-brand ring-4 ring-white" />
                 <Card className="border-border/70">
                   <CardContent>
                     <p className="text-gradient font-heading text-2xl font-bold">
@@ -234,7 +234,7 @@ export default function AboutPage() {
                   <p className="text-muted-foreground">{item.description}</p>
                   <Link
                     href={item.href}
-                    className="mt-4 inline-block text-sm font-semibold text-red-700 hover:underline"
+                    className="mt-4 inline-block text-sm font-semibold text-brand hover:underline"
                   >
                     {item.cta}
                   </Link>
@@ -245,12 +245,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20 text-white">
+      <section className="bg-ink py-20 text-white">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold sm:text-4xl">
             Our Reach
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             We operate one of the most extensive global supply chain networks in
             the world
           </p>
@@ -258,11 +258,11 @@ export default function AboutPage() {
             {reach.map((stat) => (
               <div key={stat.label}>
                 <p className="font-heading text-4xl font-bold">{stat.value}</p>
-                <p className="mt-1 text-red-100">{stat.label}</p>
+                <p className="mt-1 text-white/70">{stat.label}</p>
               </div>
             ))}
           </div>
-          <p className="mx-auto mt-10 max-w-3xl text-red-50">
+          <p className="mx-auto mt-10 max-w-3xl text-white/80">
             Leveraging our convening power, we bring together diverse players in
             the supply chain to enact change for the benefit of our industry.
           </p>
@@ -284,14 +284,14 @@ export default function AboutPage() {
               >
                 <CardContent className="space-y-3 pt-2">
                   <Avatar className="mx-auto size-20">
-                    <AvatarFallback className="bg-gradient-to-br from-red-500 to-red-700 font-heading text-xl font-bold text-white">
+                    <AvatarFallback className="bg-gradient-to-br from-brand to-brand font-heading text-xl font-bold text-white">
                       {initials(leader.name)}
                     </AvatarFallback>
                   </Avatar>
                   <h3 className="font-heading text-lg font-bold">
                     {leader.name}
                   </h3>
-                  <p className="text-sm font-semibold text-red-700">
+                  <p className="text-sm font-semibold text-brand">
                     {leader.role}
                   </p>
                   <p className="text-sm text-muted-foreground">{leader.bio}</p>
@@ -304,7 +304,7 @@ export default function AboutPage() {
               href="/team"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "border-red-200 text-red-700 hover:bg-red-50"
+                "border-brand/30 text-brand hover:bg-brand/10"
               )}
             >
               Meet Our Full Team
@@ -313,7 +313,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell text-center">
           <SectionHeading
             title="Join Our"
@@ -325,7 +325,7 @@ export default function AboutPage() {
               href="/suppliers"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+                "btn-brand"
               )}
             >
               Partner with Us
@@ -334,7 +334,7 @@ export default function AboutPage() {
               href="/careers"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "border-red-200 text-red-700 hover:bg-red-50"
+                "border-brand/30 text-brand hover:bg-brand/10"
               )}
             >
               View Careers
@@ -343,7 +343,7 @@ export default function AboutPage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "border-red-200 text-red-700 hover:bg-red-50"
+                "border-brand/30 text-brand hover:bg-brand/10"
               )}
             >
               Contact Us

@@ -20,12 +20,12 @@ const values = [
       <>
         Humility means staying grounded no matter how much we achieve. We listen
         carefully, learn continuously, and{" "}
-        <strong className="text-red-700">
+        <strong className="text-brand">
           put our clients and their needs first
         </strong>
         . By keeping humility at our core, we ensure every interaction is
         respectful, thoughtful, and focused on building{" "}
-        <strong className="text-red-700">long-lasting relationships</strong>.
+        <strong className="text-brand">long-lasting relationships</strong>.
       </>
     ),
   },
@@ -45,10 +45,10 @@ const values = [
     body: (
       <>
         Family is about{" "}
-        <strong className="text-red-700">trust, care, and support</strong>. We
+        <strong className="text-brand">trust, care, and support</strong>. We
         treat our clients, partners, and team like family, nurturing
         relationships built on respect and loyalty. This value ensures that{" "}
-        <strong className="text-red-700">collaboration</strong> feels personal,
+        <strong className="text-brand">collaboration</strong> feels personal,
         warm, and dependable, creating a sense of belonging in everything we do.
       </>
     ),
@@ -66,7 +66,7 @@ export default function PurposePage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(220,38,38,0.06),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.58 0.11 195 / 0.08),transparent_40%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Our"
@@ -80,7 +80,7 @@ export default function PurposePage() {
                 className="h-full border-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <CardContent className="space-y-4">
-                  <div className="flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-700 font-heading text-xl font-bold text-white shadow-md">
+                  <div className="flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-brand to-brand font-heading text-xl font-bold text-white shadow-md">
                     {index + 1}
                   </div>
                   <h3 className="font-heading text-xl font-bold">
@@ -96,12 +96,12 @@ export default function PurposePage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20">
+      <section className="bg-ink py-20">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to Partner with Us?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Join us in creating sustainable value across global supply chains.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -109,7 +109,7 @@ export default function PurposePage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+                "h-11 bg-white px-6 text-brand hover:bg-brand/10"
               )}
             >
               Get in Touch
@@ -118,7 +118,7 @@ export default function PurposePage() {
               href="/about"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Learn More About Us

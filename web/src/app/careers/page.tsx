@@ -170,7 +170,7 @@ export default async function CareersPage() {
                 className="border-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <CardHeader>
-                  <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-md">
+                  <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand text-white shadow-md">
                     <perk.icon className="size-6" />
                   </div>
                   <CardTitle className="mt-2 font-heading text-xl font-bold">
@@ -186,7 +186,7 @@ export default async function CareersPage() {
         </div>
       </section>
 
-      <section id="openings" className="scroll-mt-24 bg-zinc-50 py-20">
+      <section id="openings" className="scroll-mt-24 bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Current"
@@ -207,11 +207,11 @@ export default async function CareersPage() {
                       </h3>
                       <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1">
-                          <MapPin className="size-3.5 text-red-500" />
+                          <MapPin className="size-3.5 text-brand" />
                           {job.location}
                         </span>
                         <span className="flex items-center gap-1">
-                          <Briefcase className="size-3.5 text-red-500" />
+                          <Briefcase className="size-3.5 text-brand" />
                           {job.type}
                         </span>
                         <span>{job.postedLabel}</span>
@@ -221,7 +221,7 @@ export default async function CareersPage() {
                       href="/#contact"
                       className={cn(
                         buttonVariants({ size: "lg" }),
-                        "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+                        "btn-brand"
                       )}
                     >
                       Apply Now
@@ -232,7 +232,7 @@ export default async function CareersPage() {
                     {job.tags.map((tag) => (
                       <Badge
                         key={tag}
-                        className="bg-red-100 text-red-800 hover:bg-red-100"
+                        className="bg-brand/15 text-brand hover:bg-brand/15"
                       >
                         {tag}
                       </Badge>
@@ -264,7 +264,7 @@ export default async function CareersPage() {
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     {group.items.map((item) => (
                       <li key={item} className="flex items-center gap-2">
-                        <span className="size-1.5 rounded-full bg-red-500" />
+                        <span className="size-1.5 rounded-full bg-brand/100" />
                         {item}
                       </li>
                     ))}
@@ -276,7 +276,7 @@ export default async function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Application"
@@ -290,7 +290,7 @@ export default async function CareersPage() {
                 className="border-border/70 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <CardContent className="space-y-3">
-                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-700 font-heading text-lg font-bold text-white">
+                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-brand to-brand font-heading text-lg font-bold text-white">
                     {index + 1}
                   </div>
                   <h3 className="font-heading font-bold">{step.title}</h3>
@@ -304,12 +304,12 @@ export default async function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20">
+      <section className="bg-ink py-20">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to Join Our Team?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Explore our current openings and find the perfect role to advance
             your career with Just A Click.
           </p>
@@ -318,7 +318,7 @@ export default async function CareersPage() {
               href="#openings"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+                "h-11 bg-white px-6 text-brand hover:bg-brand/10"
               )}
             >
               View All Jobs
@@ -327,7 +327,7 @@ export default async function CareersPage() {
               href="/#contact"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Contact HR

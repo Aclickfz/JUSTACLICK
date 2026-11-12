@@ -123,7 +123,7 @@ export default function TeamPage() {
       {departments.map((dept, index) => (
         <section
           key={dept.title}
-          className={cn("py-20", index % 2 === 1 && "bg-zinc-50")}
+          className={cn("py-20", index % 2 === 1 && "bg-mist/80")}
         >
           <div className="section-shell">
             <SectionHeading
@@ -135,7 +135,7 @@ export default function TeamPage() {
                 <CardContent className="flex h-full flex-col gap-5">
                   <div className="flex items-center gap-4">
                     <Avatar className="size-16">
-                      <AvatarFallback className="bg-gradient-to-br from-red-500 to-red-700 font-heading text-lg font-bold text-white">
+                      <AvatarFallback className="bg-gradient-to-br from-brand to-brand font-heading text-lg font-bold text-white">
                         {initials(dept.lead)}
                       </AvatarFallback>
                     </Avatar>
@@ -143,12 +143,12 @@ export default function TeamPage() {
                       <h3 className="font-heading text-xl font-bold">
                         {dept.lead}
                       </h3>
-                      <p className="text-sm font-semibold text-red-700">
+                      <p className="text-sm font-semibold text-brand">
                         {dept.role}
                       </p>
                     </div>
                   </div>
-                  <Quote className="size-7 text-red-300" />
+                  <Quote className="size-7 text-brand/50" />
                   <p className="text-lg italic text-foreground">
                     &ldquo;{dept.quote}&rdquo;
                   </p>
@@ -165,7 +165,7 @@ export default function TeamPage() {
                     {dept.stats.map((stat) => (
                       <div
                         key={stat.label}
-                        className="rounded-xl border border-red-100 bg-red-50/60 p-4 text-center"
+                        className="rounded-none border border-brand/20 bg-brand/10 p-4 text-center"
                       >
                         <p className="text-gradient font-heading text-2xl font-bold">
                           {stat.value}
@@ -183,12 +183,12 @@ export default function TeamPage() {
         </section>
       ))}
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20">
+      <section className="bg-ink py-20">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to Work with Our Experts?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Our dedicated team of experts is ready to help you bring your home
             furnishing vision to life.
           </p>
@@ -197,7 +197,7 @@ export default function TeamPage() {
               href="/about"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+                "h-11 bg-white px-6 text-brand hover:bg-brand/10"
               )}
             >
               Meet Our Full Team
@@ -206,7 +206,7 @@ export default function TeamPage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Request a Quote

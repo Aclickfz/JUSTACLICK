@@ -169,7 +169,7 @@ export default function WhyWeExistPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-zinc-50 py-20">
+      <section className="relative overflow-hidden bg-mist/80 py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.07),transparent_45%)]" />
         <div className="section-shell relative">
           <SectionHeading
@@ -184,7 +184,7 @@ export default function WhyWeExistPage() {
                 className="h-full border-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <CardHeader>
-                  <Badge className="w-fit bg-red-100 text-red-800 hover:bg-red-100">
+                  <Badge className="w-fit bg-brand/15 text-brand hover:bg-brand/15">
                     {item.badge}
                   </Badge>
                   <CardTitle className="font-heading text-xl uppercase">
@@ -196,7 +196,7 @@ export default function WhyWeExistPage() {
                   <ul className="mt-4 space-y-2">
                     {item.items.map((li) => (
                       <li key={li} className="flex items-center gap-2 text-sm">
-                        <CheckCircle2 className="size-4 shrink-0 text-red-500" />
+                        <CheckCircle2 className="size-4 shrink-0 text-brand" />
                         {li}
                       </li>
                     ))}
@@ -222,7 +222,7 @@ export default function WhyWeExistPage() {
                 className="border-border/70 text-center transition-all hover:shadow-lg"
               >
                 <CardContent className="pt-2">
-                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-700 font-heading text-lg font-bold text-white">
+                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-brand to-brand font-heading text-lg font-bold text-white">
                     {index + 1}
                   </div>
                   <h3 className="mt-4 font-heading text-lg font-bold uppercase">
@@ -238,7 +238,7 @@ export default function WhyWeExistPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Trusted by Industry"
@@ -249,7 +249,7 @@ export default function WhyWeExistPage() {
             {testimonials.map((t) => (
               <Card key={t.name} className="border-border/70">
                 <CardContent className="space-y-4">
-                  <Quote className="size-8 text-red-300" />
+                  <Quote className="size-8 text-brand/50" />
                   <p className="text-foreground">&ldquo;{t.quote}&rdquo;</p>
                   <div>
                     <p className="font-heading font-bold uppercase">{t.name}</p>
@@ -274,12 +274,12 @@ export default function WhyWeExistPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20">
+      <section className="bg-ink py-20">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to Experience Excellence?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Join thousands of satisfied customers who trust Just A Click for
             their home furnishing needs.
           </p>
@@ -288,7 +288,7 @@ export default function WhyWeExistPage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+                "h-11 bg-white px-6 text-brand hover:bg-brand/10"
               )}
             >
               Request a Quote
@@ -297,7 +297,7 @@ export default function WhyWeExistPage() {
               href="/portfolio"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Explore Our Designs
@@ -306,7 +306,7 @@ export default function WhyWeExistPage() {
               href="/suppliers"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Partner with Us

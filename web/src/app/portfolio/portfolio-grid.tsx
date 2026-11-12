@@ -53,8 +53,8 @@ export function PortfolioGrid({ items }: { items: PortfolioGridItem[] }) {
             className={cn(
               "h-9 rounded-full px-4",
               active === filter.value
-                ? "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
-                : "border-red-200 text-red-700 hover:bg-red-50"
+                ? "btn-brand"
+                : "border-brand/30 text-brand hover:bg-brand/10"
             )}
           >
             {filter.label}
@@ -78,14 +78,14 @@ export function PortfolioGrid({ items }: { items: PortfolioGridItem[] }) {
               />
             </div>
             <CardContent className="space-y-3">
-              <Badge className="bg-red-100 text-red-800 hover:bg-red-100">
+              <Badge className="bg-brand/15 text-brand hover:bg-brand/15">
                 {labelFor(item.category)} • {item.year}
               </Badge>
               <h3 className="font-heading text-lg font-bold">{item.title}</h3>
               <p className="text-sm text-muted-foreground">
                 {item.description}
               </p>
-              <span className="inline-block text-sm font-semibold text-red-700">
+              <span className="inline-block text-sm font-semibold text-brand">
                 View Details →
               </span>
             </CardContent>

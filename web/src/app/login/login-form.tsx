@@ -66,11 +66,11 @@ export function LoginForm() {
           <input
             type="checkbox"
             name="remember"
-            className="size-4 rounded border-border accent-red-600"
+            className="size-4 rounded border-border accent-brand"
           />
           Remember me
         </label>
-        <Link href="/#contact" className="font-medium text-red-700 hover:underline">
+        <Link href="/#contact" className="font-medium text-brand hover:underline">
           Forgot password?
         </Link>
       </div>
@@ -78,7 +78,7 @@ export function LoginForm() {
         type="submit"
         size="lg"
         disabled={loading}
-        className="h-11 w-full bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+        className="h-11 w-full btn-brand"
       >
         {loading ? "Signing in..." : "Sign In"}
       </Button>

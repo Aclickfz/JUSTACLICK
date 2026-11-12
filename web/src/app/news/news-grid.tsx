@@ -47,8 +47,8 @@ export function NewsGrid({
           className={cn(
             "h-9 rounded-full px-4",
             active === "all"
-              ? "bg-gradient-to-r from-red-500 to-red-600 text-white"
-              : "border-red-200 text-red-700 hover:bg-red-50"
+              ? "btn-brand"
+              : "border-brand/30 text-brand hover:bg-brand/10"
           )}
         >
           All News
@@ -62,8 +62,8 @@ export function NewsGrid({
             className={cn(
               "h-9 rounded-full px-4",
               active === category
-                ? "bg-gradient-to-r from-red-500 to-red-600 text-white"
-                : "border-red-200 text-red-700 hover:bg-red-50"
+                ? "btn-brand"
+                : "border-brand/30 text-brand hover:bg-brand/10"
             )}
           >
             {category}
@@ -89,11 +89,11 @@ export function NewsGrid({
             <CardContent className="space-y-2">
               <p className="text-sm text-muted-foreground">
                 {formatDate(post.publishedAt)} •{" "}
-                <span className="font-medium text-red-700">{post.category}</span>
+                <span className="font-medium text-brand">{post.category}</span>
               </p>
               <h3 className="font-heading text-lg font-bold">{post.title}</h3>
               <p className="text-sm text-muted-foreground">{post.excerpt}</p>
-              <span className="inline-block text-sm font-semibold text-red-700">
+              <span className="inline-block text-sm font-semibold text-brand">
                 Read More →
               </span>
             </CardContent>

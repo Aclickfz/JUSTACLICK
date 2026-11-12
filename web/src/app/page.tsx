@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Check } from "lucide-react";
 import { HomeHero } from "@/components/home-hero";
 import { WorkflowTabs } from "@/components/workflow-tabs";
 import { StatsCounters } from "@/components/stats-counters";
 import { ContactForm } from "@/components/contact-form";
 import { SectionHeading } from "@/components/section-heading";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { homeContent } from "@/content/home";
@@ -17,43 +16,40 @@ export default function HomePage() {
     <>
       <HomeHero />
 
-      <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(220,38,38,0.06),transparent_40%)]" />
-        <div className="section-shell relative">
+      <section className="relative py-24">
+        <div className="section-shell">
           <SectionHeading
             title="Our"
             accent="Strategy for Excellence"
             description={homeContent.strategy.description}
           />
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
             {homeContent.strategy.cards.map((card) => (
-              <Link key={card.href} href={card.href} className="group">
-                <Card className="h-full border-border/70 transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-xl">
-                  <CardHeader>
-                    <Badge className="w-fit bg-red-100 text-red-800 hover:bg-red-100">
-                      Strategy
-                    </Badge>
-                    <CardTitle className="font-heading text-2xl">
-                      {card.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-3">
-                      {card.items.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-start gap-2 text-muted-foreground"
-                        >
-                          <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-red-500" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-red-700 group-hover:gap-3">
-                      Learn More <ArrowRight className="size-4" />
-                    </span>
-                  </CardContent>
-                </Card>
+              <Link
+                key={card.href}
+                href={card.href}
+                className="group bg-card p-8 transition-colors hover:bg-mist sm:p-10"
+              >
+                <p className="text-xs font-semibold tracking-[0.18em] text-brand uppercase">
+                  Strategy
+                </p>
+                <h3 className="font-heading mt-3 text-2xl font-bold text-ink">
+                  {card.title}
+                </h3>
+                <ul className="mt-6 space-y-3">
+                  {card.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-muted-foreground"
+                    >
+                      <Check className="mt-0.5 size-4 shrink-0 text-brand" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-all group-hover:gap-3 group-hover:text-brand">
+                  Learn More <ArrowUpRight className="size-4" />
+                </span>
               </Link>
             ))}
           </div>
@@ -62,60 +58,76 @@ export default function HomePage() {
 
       <WorkflowTabs />
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/70 py-24">
         <div className="section-shell">
-          <SectionHeading
-            title="Categories"
-            accent="We Serve"
-            description="From furniture and lighting to decor and textiles — crafted for buyers, wholesalers, and vendors."
-          />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {productCategories.slice(0, 8).map((category) => (
-              <Card
-                key={category.slug}
-                className="border-border/70 transition-all hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <CardContent className="p-5">
-                  <Badge variant="secondary">{category.badge}</Badge>
-                  <h3 className="font-heading mt-3 text-lg font-bold">
-                    {category.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
+          <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <SectionHeading
+              title="Categories"
+              accent="We Serve"
+              description="From furniture and lighting to decor and textiles — crafted for buyers, wholesalers, and vendors."
+            />
             <Link
               href="/products"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "bg-gradient-to-r from-red-500 to-red-600 text-white"
+                "btn-brand shrink-0 self-start md:mb-12"
               )}
             >
               Explore Products
             </Link>
           </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {productCategories.slice(0, 8).map((category) => (
+              <article
+                key={category.slug}
+                className="group relative overflow-hidden border border-border bg-card"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={category.imageUrl}
+                    alt={category.name}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
+                  <p className="absolute bottom-3 left-3 text-xs font-semibold tracking-[0.16em] text-white uppercase">
+                    {category.badge}
+                  </p>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-heading text-lg font-bold text-ink">
+                    {category.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {category.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="section-shell">
+      <section className="py-24">
+        <div className="section-shell grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <SectionHeading
             title="Why"
             accent="only Us"
             description="Consistency, accountability, and collaboration guide every project from concept to launch."
           />
-          <div className="grid gap-4 md:grid-cols-2">
-            {homeContent.whyUs.points.map((point) => (
+          <div className="grid gap-3 sm:grid-cols-2">
+            {homeContent.whyUs.points.map((point, index) => (
               <div
                 key={point}
-                className="flex items-start gap-3 rounded-2xl border border-border bg-white p-5 shadow-sm"
+                className="border border-border bg-card/80 p-5 transition-colors hover:border-brand/40"
               >
-                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-red-600" />
-                <p className="text-base font-medium text-foreground">{point}</p>
+                <p className="font-heading text-sm font-bold text-brand">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-3 text-base font-medium leading-snug text-ink">
+                  {point}
+                </p>
               </div>
             ))}
           </div>
@@ -124,32 +136,39 @@ export default function HomePage() {
 
       <StatsCounters />
 
-      <section id="start" className="py-20">
-        <div className="section-shell text-center">
-          <SectionHeading
-            title="Ready to"
-            accent="Grow Together?"
-            description="Sign in as a buyer or vendor and start building with Just A Click."
-          />
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/login"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "bg-gradient-to-r from-red-500 to-red-600 text-white"
-              )}
-            >
-              Buyer / Vendor Login
-            </Link>
-            <Link
-              href="/signup"
-              className={cn(
-                buttonVariants({ size: "lg", variant: "outline" }),
-                "border-red-200"
-              )}
-            >
-              Create Account
-            </Link>
+      <section id="start" className="py-24">
+        <div className="section-shell">
+          <div className="relative overflow-hidden border border-border bg-ink px-6 py-14 text-center sm:px-12">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.58_0.11_195_/_0.25),transparent_45%)]" />
+            <div className="relative">
+              <h2 className="font-heading text-3xl font-bold text-white sm:text-5xl">
+                Ready to <span className="text-gradient">Grow Together?</span>
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-white/60">
+                Sign in as a buyer or vendor and start building with Just A
+                Click.
+              </p>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Link
+                  href="/login"
+                  className={cn(
+                    buttonVariants({ size: "lg" }),
+                    "btn-brand h-12 px-8"
+                  )}
+                >
+                  Buyer / Vendor Login
+                </Link>
+                <Link
+                  href="/signup"
+                  className={cn(
+                    buttonVariants({ size: "lg", variant: "outline" }),
+                    "h-12 border-white/25 bg-transparent px-8 text-white hover:bg-white hover:text-ink"
+                  )}
+                >
+                  Create Account
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

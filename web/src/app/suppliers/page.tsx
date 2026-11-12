@@ -102,7 +102,7 @@ export default function SuppliersPage() {
                 className="border-border/70 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <CardContent className="space-y-2">
-                  <h3 className="font-heading text-lg font-bold text-red-700">
+                  <h3 className="font-heading text-lg font-bold text-brand">
                     {item.title}
                   </h3>
                   <p className="text-sm text-muted-foreground">
@@ -130,7 +130,7 @@ export default function SuppliersPage() {
                 <ul className="mt-5 space-y-3">
                   {whyPartner.map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-red-500" />
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-brand" />
                       {item}
                     </li>
                   ))}
@@ -147,7 +147,7 @@ export default function SuppliersPage() {
                 {benefits.map((benefit) => (
                   <div
                     key={benefit.label}
-                    className="rounded-xl border border-red-100 bg-red-50/60 p-4 text-center"
+                    className="rounded-none border border-brand/20 bg-brand/10 p-4 text-center"
                   >
                     <p className="text-gradient font-heading text-2xl font-bold">
                       {benefit.value}
@@ -163,7 +163,7 @@ export default function SuppliersPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Supply Chain"
@@ -189,7 +189,7 @@ export default function SuppliersPage() {
                   </p>
                   <Link
                     href="#"
-                    className="inline-block text-sm font-semibold text-red-700 hover:underline"
+                    className="inline-block text-sm font-semibold text-brand hover:underline"
                   >
                     Download PDF →
                   </Link>
@@ -229,10 +229,10 @@ export default function SuppliersPage() {
                 className="border-border/70 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <CardContent className="space-y-3">
-                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-700 font-heading text-lg font-bold text-white">
+                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-brand to-brand font-heading text-lg font-bold text-white">
                     {index + 1}
                   </div>
-                  <Badge className="bg-red-100 text-red-800 hover:bg-red-100">
+                  <Badge className="bg-brand/15 text-brand hover:bg-brand/15">
                     Step {index + 1}
                   </Badge>
                   <h3 className="font-heading font-bold">{step.title}</h3>
@@ -246,7 +246,7 @@ export default function SuppliersPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-50 py-20">
+      <section className="bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Supplier"
@@ -270,7 +270,7 @@ export default function SuppliersPage() {
                     href="#contact"
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "border-red-200 text-red-700 hover:bg-red-50"
+                      "border-brand/30 text-brand hover:bg-brand/10"
                     )}
                   >
                     {resource.cta}
@@ -282,12 +282,12 @@ export default function SuppliersPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-red-600 to-red-800 py-20">
+      <section className="bg-ink py-20">
         <div className="section-shell text-center">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to Become a Supplier?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Join our global network of trusted suppliers and help us deliver
             exceptional home furnishing solutions worldwide.
           </p>
@@ -296,7 +296,7 @@ export default function SuppliersPage() {
               href="/signup"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+                "h-11 bg-white px-6 text-brand hover:bg-brand/10"
               )}
             >
               Apply Now
@@ -305,7 +305,7 @@ export default function SuppliersPage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-red-700"
+                "h-11 border-white/60 bg-transparent px-6 text-white hover:bg-white hover:text-brand"
               )}
             >
               Contact Us

@@ -13,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/section-heading";
 import { Send } from "lucide-react";
 
@@ -70,88 +69,88 @@ export function ContactForm() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-zinc-50 py-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.08),transparent_45%)]" />
-      <div className="section-shell relative">
+    <section className="relative overflow-hidden py-24">
+      <div className="section-shell relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <SectionHeading
           title="Get in"
           accent="Touch"
           description="Have a question or want to learn more about our services? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible."
         />
-        <Card className="mx-auto max-w-3xl border-border/70 shadow-lg">
-          <CardContent className="p-6 sm:p-8">
-            <form className="space-y-5" onSubmit={onSubmit}>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">
-                    First Name <span className="text-red-600">*</span>
-                  </Label>
-                  <Input id="firstName" name="firstName" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">
-                    Last Name <span className="text-red-600">*</span>
-                  </Label>
-                  <Input id="lastName" name="lastName" required />
-                </div>
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="email">
-                    Email Address <span className="text-red-600">*</span>
-                  </Label>
-                  <Input id="email" name="email" type="email" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" name="phone" type="tel" />
-                </div>
-              </div>
+        <div className="surface-panel p-6 sm:p-8">
+          <form className="space-y-5" onSubmit={onSubmit}>
+            <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="company">Company Name</Label>
-                <Input id="company" name="company" />
-              </div>
-              <div className="space-y-2">
-                <Label>
-                  Subject <span className="text-red-600">*</span>
+                <Label htmlFor="firstName">
+                  First Name <span className="text-brand">*</span>
                 </Label>
-                <Select value={subject} onValueChange={(v) => setSubject(v ?? "")}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a subject" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {subjects.map((item) => (
-                      <SelectItem key={item.value} value={item.value}>
-                        {item.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Input id="firstName" name="firstName" required />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="message">
-                  Message <span className="text-red-600">*</span>
+                <Label htmlFor="lastName">
+                  Last Name <span className="text-brand">*</span>
                 </Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="Tell us how we can help you..."
-                />
+                <Input id="lastName" name="lastName" required />
               </div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
-                size="lg"
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="email">
+                  Email Address <span className="text-brand">*</span>
+                </Label>
+                <Input id="email" name="email" type="email" required />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone Number</Label>
+                <Input id="phone" name="phone" type="tel" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="company">Company Name</Label>
+              <Input id="company" name="company" />
+            </div>
+            <div className="space-y-2">
+              <Label>
+                Subject <span className="text-brand">*</span>
+              </Label>
+              <Select
+                value={subject}
+                onValueChange={(v) => setSubject(v ?? "")}
               >
-                {loading ? "Sending..." : "Send Message"}
-                <Send className="ml-1 size-4" />
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a subject" />
+                </SelectTrigger>
+                <SelectContent>
+                  {subjects.map((item) => (
+                    <SelectItem key={item.value} value={item.value}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="message">
+                Message <span className="text-brand">*</span>
+              </Label>
+              <Textarea
+                id="message"
+                name="message"
+                required
+                rows={5}
+                placeholder="Tell us how we can help you..."
+              />
+            </div>
+            <Button
+              type="submit"
+              disabled={loading}
+              className="btn-brand h-11 w-full"
+              size="lg"
+            >
+              {loading ? "Sending..." : "Send Message"}
+              <Send className="ml-1 size-4" />
+            </Button>
+          </form>
+        </div>
       </div>
     </section>
   );

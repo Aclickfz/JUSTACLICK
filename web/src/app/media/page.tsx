@@ -112,7 +112,7 @@ export default function MediaPage() {
                 className="border-border/70 text-center transition-all hover:-translate-y-1 hover:shadow-xl"
               >
                 <CardHeader className="items-center">
-                  <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-md">
+                  <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-brand text-white shadow-md">
                     <item.icon className="size-7" />
                   </div>
                   <CardTitle className="mt-2 font-heading text-xl font-bold">
@@ -125,7 +125,7 @@ export default function MediaPage() {
                     href={item.href}
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "mt-4 border-red-200 text-red-700 hover:bg-red-50"
+                      "mt-4 border-brand/30 text-brand hover:bg-brand/10"
                     )}
                   >
                     {item.cta}
@@ -137,7 +137,7 @@ export default function MediaPage() {
         </div>
       </section>
 
-      <section id="press" className="scroll-mt-24 bg-zinc-50 py-20">
+      <section id="press" className="scroll-mt-24 bg-mist/80 py-20">
         <div className="section-shell">
           <SectionHeading
             title="Press"
@@ -151,7 +151,7 @@ export default function MediaPage() {
                 className="border-border/70 transition-all hover:shadow-lg"
               >
                 <CardContent className="space-y-3">
-                  <p className="text-sm font-medium text-red-700">
+                  <p className="text-sm font-medium text-brand">
                     {release.date}
                   </p>
                   <h3 className="font-heading text-xl font-bold">
@@ -163,7 +163,7 @@ export default function MediaPage() {
                       href="/news"
                       className={cn(
                         buttonVariants({ size: "sm" }),
-                        "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+                        "btn-brand"
                       )}
                     >
                       Read Full Release
@@ -172,7 +172,7 @@ export default function MediaPage() {
                       href="#"
                       className={cn(
                         buttonVariants({ variant: "outline", size: "sm" }),
-                        "border-red-200 text-red-700 hover:bg-red-50"
+                        "border-brand/30 text-brand hover:bg-brand/10"
                       )}
                     >
                       Download PDF
@@ -199,7 +199,7 @@ export default function MediaPage() {
                 className="border-border/70 transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <CardContent className="space-y-3">
-                  <div className="flex size-11 items-center justify-center rounded-xl bg-red-100 text-red-700">
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-brand/15 text-brand">
                     <item.icon className="size-5" />
                   </div>
                   <h3 className="font-heading text-lg font-bold">
@@ -214,7 +214,7 @@ export default function MediaPage() {
                       href="#"
                       className={cn(
                         buttonVariants({ size: "sm" }),
-                        "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+                        "btn-brand"
                       )}
                     >
                       <Download className="size-3.5" />
@@ -230,14 +230,14 @@ export default function MediaPage() {
 
       <section
         id="contact"
-        className="scroll-mt-24 bg-gradient-to-br from-red-600 to-red-800 py-20 text-white"
+        className="scroll-mt-24 bg-ink py-20 text-white"
       >
         <div className="section-shell">
           <div className="mb-10 text-center">
             <h2 className="font-heading text-3xl font-bold sm:text-4xl">
               Media Contact
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-red-100">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
               Get in touch with our media relations team
             </p>
           </div>
@@ -270,7 +270,7 @@ export default function MediaPage() {
                 {team.map((member) => (
                   <div key={member.email}>
                     <p className="font-semibold">{member.name}</p>
-                    <p className="text-sm text-red-100">{member.role}</p>
+                    <p className="text-sm text-white/70">{member.role}</p>
                     <a
                       href={`mailto:${member.email}`}
                       className="text-sm underline underline-offset-4"
@@ -287,7 +287,7 @@ export default function MediaPage() {
               href="mailto:press@justaclick.com"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-white px-6 text-red-700 hover:bg-red-50"
+                "h-11 bg-white px-6 text-brand hover:bg-brand/10"
               )}
             >
               Contact Media Team

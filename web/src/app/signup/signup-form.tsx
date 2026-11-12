@@ -141,19 +141,19 @@ export function SignupForm() {
           type="checkbox"
           name="terms"
           required
-          className="mt-0.5 size-4 rounded border-border accent-red-600"
+          className="mt-0.5 size-4 rounded border-border accent-brand"
         />
         <span>
           I agree to the{" "}
-          <span className="font-medium text-red-700">Terms of Service</span> and{" "}
-          <span className="font-medium text-red-700">Privacy Policy</span>
+          <span className="font-medium text-brand">Terms of Service</span> and{" "}
+          <span className="font-medium text-brand">Privacy Policy</span>
         </span>
       </label>
       <Button
         type="submit"
         size="lg"
         disabled={loading}
-        className="h-11 w-full bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700"
+        className="h-11 w-full btn-brand"
       >
         {loading ? "Creating account..." : "Create Account"}
       </Button>

@@ -9,15 +9,24 @@ export function SectionHeading({
   title,
   accent,
   description,
-  align = "center",
+  align = "left",
 }: SectionHeadingProps) {
   return (
     <div
       className={
-        align === "center" ? "mx-auto mb-12 max-w-3xl text-center" : "mb-10 max-w-3xl"
+        align === "center"
+          ? "mx-auto mb-12 max-w-3xl text-center"
+          : "mb-12 max-w-3xl"
       }
     >
-      <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+      <div
+        className={
+          align === "center"
+            ? "mx-auto mb-4 h-px w-12 bg-brand"
+            : "mb-4 h-px w-12 bg-brand"
+        }
+      />
+      <h2 className="font-heading text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
         {title}{" "}
         {accent ? <span className="text-gradient">{accent}</span> : null}
       </h2>

@@ -55,7 +55,7 @@ export function NewsletterForm() {
         type="submit"
         size="lg"
         disabled={loading}
-        className="h-11 bg-gradient-to-r from-red-500 to-red-600 px-6 text-white hover:from-red-600 hover:to-red-700"
+        className="h-11 bg-gradient-to-r from-brand to-brand px-6 text-white "
       >
         {loading ? "Subscribing..." : "Subscribe"}
         <Send className="ml-1 size-4" />

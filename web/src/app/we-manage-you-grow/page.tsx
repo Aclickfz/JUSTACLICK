@@ -78,7 +78,7 @@ export default function WeManageYouGrowPage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(220,38,38,0.06),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.58 0.11 195 / 0.08),transparent_40%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Six Ways We"
@@ -92,10 +92,10 @@ export default function WeManageYouGrowPage() {
                 className="h-full border-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <CardHeader className="gap-3">
-                  <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-md">
+                  <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand text-white shadow-md">
                     <service.icon className="size-6" />
                   </div>
-                  <Badge className="w-fit bg-red-100 text-red-800 hover:bg-red-100">
+                  <Badge className="w-fit bg-brand/15 text-brand hover:bg-brand/15">
                     {service.badge}
                   </Badge>
                   <CardTitle className="font-heading text-xl font-bold uppercase">
@@ -113,7 +113,7 @@ export default function WeManageYouGrowPage() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 bg-gradient-to-r from-red-500 to-red-600 px-6 text-white hover:from-red-600 hover:to-red-700"
+                "h-11 bg-gradient-to-r from-brand to-brand px-6 text-white "
               )}
             >
               Request a Quote
@@ -122,7 +122,7 @@ export default function WeManageYouGrowPage() {
               href="/portfolio"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-11 border-red-200 px-6 text-red-700 hover:bg-red-50"
+                "h-11 border-brand/30 px-6 text-brand hover:bg-brand/10"
               )}
             >
               Explore Our Designs

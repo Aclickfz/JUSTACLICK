@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 
 export default function SignupPage() {
   return (
-    <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-zinc-50 pb-16 pt-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.1),transparent_45%)]" />
+    <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-mist/80 pb-16 pt-32">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.58 0.11 195 / 0.12),transparent_45%)]" />
       <div className="section-shell relative">
         <Card className="mx-auto w-full max-w-xl border-border/70 shadow-xl">
           <CardHeader className="items-center text-center">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-700 font-heading text-lg font-bold text-white shadow-md">
+            <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-brand font-heading text-lg font-bold text-white shadow-md">
               JC
             </div>
             <CardTitle className="mt-2 font-heading text-3xl font-bold">
@@ -32,7 +32,7 @@ export default function SignupPage() {
               Already have an account?{" "}
               <Link
                 href="/login"
-                className="font-semibold text-red-700 hover:underline"
+                className="font-semibold text-brand hover:underline"
               >
                 Sign in here
               </Link>
