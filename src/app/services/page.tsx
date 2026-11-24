@@ -141,7 +141,7 @@ export default function ServicesPage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(26_126_0_/_0.08),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(34_49_64_/_0.06),transparent_40%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Our"
@@ -152,10 +152,10 @@ export default function ServicesPage() {
             {services.map((service) => (
               <Card
                 key={service.title}
-                className="h-full border-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="h-full rounded-lg border-border/70 shadow-[0_8px_30px_rgba(34,49,64,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-brand/35 hover:shadow-[0_16px_40px_rgba(34,49,64,0.08)]"
               >
                 <CardHeader className="gap-3">
-                  <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand text-white shadow-md">
+                  <div className="flex size-12 items-center justify-center rounded-md bg-brand/10 text-brand">
                     <service.icon className="size-6" />
                   </div>
                   <Badge className="w-fit bg-brand/15 text-brand hover:bg-brand/15">

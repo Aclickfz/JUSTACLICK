@@ -65,7 +65,7 @@ function brandShell(title: string, body: string) {
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e4e9f1;">
           <tr>
             <td style="background:linear-gradient(135deg,#223140,#051423);padding:28px 32px;">
-              <p style="margin:0;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#1a7e00;">Just A Click</p>
+              <p style="margin:0;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#223140;">Just A Click</p>
               <h1 style="margin:8px 0 0;font-size:24px;line-height:1.3;color:#ffffff;">${escapeHtml(title)}</h1>
             </td>
           </tr>
@@ -190,4 +190,88 @@ export async function sendContactEmails(data: ContactPayload) {
     adminMessageId: adminInfo.messageId,
     userMessageId,
   };
+}
+
+export async function sendVerificationEmail(input: {
+  name: string;
+  email: string;
+  verifyUrl: string;
+}) {
+  if (!isSmtpConfigured()) {
+    throw new Error("SMTP is not configured.");
+  }
+
+  const transporter = getTransporter();
+  const from =
+    process.env.AUTH_EMAIL_FROM ||
+    `Just A Click <${process.env.SMTP_USER}>`;
+
+  const body = `
+    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">
+      Hi ${escapeHtml(input.name.split(" ")[0] || input.name)},
+    </p>
+    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">
+      Thanks for creating your Just A Click account. Please verify your email
+      address to activate login access.
+    </p>
+    <p style="margin:24px 0;">
+      <a href="${escapeHtml(input.verifyUrl)}"
+         style="display:inline-block;background:#223140;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;">
+        Verify email
+      </a>
+    </p>
+    <p style="margin:0;font-size:13px;line-height:1.6;color:#64748b;">
+      Or paste this link in your browser:<br />
+      ${escapeHtml(input.verifyUrl)}
+    </p>
+    <p style="margin:24px 0 0;font-size:13px;color:#64748b;">
+      This link expires in 24 hours. If you did not sign up, you can ignore this email.
+    </p>
+  `;
+
+  const info = await transporter.sendMail({
+    from,
+    to: input.email,
+    subject: "Verify your Just A Click account",
+    html: brandShell("Verify your email", body),
+    text: `Hi ${input.name},\n\nVerify your Just A Click account:\n${input.verifyUrl}\n\nThis link expires in 24 hours.`,
+  });
+
+  return info.messageId;
+}
+
+export async function sendWelcomeVerifiedEmail(input: {
+  name: string;
+  email: string;
+}) {
+  if (!isSmtpConfigured()) return;
+
+  const transporter = getTransporter();
+  const from =
+    process.env.AUTH_EMAIL_FROM ||
+    `Just A Click <${process.env.SMTP_USER}>`;
+  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+  const body = `
+    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">
+      Hi ${escapeHtml(input.name.split(" ")[0] || input.name)},
+    </p>
+    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">
+      Your email is verified. You can now sign in to Just A Click.
+    </p>
+    <p style="margin:24px 0;">
+      <a href="${escapeHtml(`${site}/login`)}"
+         style="display:inline-block;background:#223140;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;">
+        Sign in
+      </a>
+    </p>
+  `;
+
+  await transporter.sendMail({
+    from,
+    to: input.email,
+    subject: "Email verified — Just A Click",
+    html: brandShell("You're verified", body),
+    text: `Hi ${input.name},\n\nYour email is verified. Sign in at ${site}/login`,
+  });
 }

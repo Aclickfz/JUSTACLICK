@@ -189,7 +189,7 @@ export default function InnovationPage() {
       </section>
 
       <section className="relative overflow-hidden bg-mist/80 py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgb(26_126_0_/_0.1),transparent_45%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgb(34_49_64_/_0.08),transparent_45%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="The Just A Click"

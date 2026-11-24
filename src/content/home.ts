@@ -52,4 +52,53 @@ export const homeContent = {
       "Cost-optimized global logistics",
     ],
   },
+  pillars: [
+    {
+      number: "01",
+      title: "Design & Manufacture",
+      description:
+        "End-to-end ownership from design to delivery with quality-first manufacturing.",
+      href: "/services",
+    },
+    {
+      number: "02",
+      title: "Transparent Process",
+      description:
+        "Transparent communication at every milestone so projects move securely and on time.",
+      href: "/commitment",
+    },
+    {
+      number: "03",
+      title: "Global Logistics",
+      description:
+        "Cost-optimized global logistics across partners and markets worldwide.",
+      href: "/innovation",
+    },
+  ],
+  heroSlides: [
+    {
+      titleBefore: "Creating",
+      titleAccent: "the supply chain of the future",
+      subtitle: "We Design, Manufacture & Deliver Worldwide",
+      imageUrl:
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=80",
+      imageAlt: "Global supply chain warehouse operations",
+    },
+    {
+      titleBefore: "Design,",
+      titleAccent: "manufacture & deliver",
+      subtitle: "Your complete home furnishing partner for buyers and vendors",
+      imageUrl:
+        "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2400&q=80",
+      imageAlt: "Manufacturing and production floor",
+    },
+    {
+      titleBefore: "Built for",
+      titleAccent: "lasting growth",
+      subtitle: "Consistency, accountability, and collaboration on every project",
+      imageUrl:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2400&q=80",
+      imageAlt: "Business partnership and planning",
+    },
+  ],
 };

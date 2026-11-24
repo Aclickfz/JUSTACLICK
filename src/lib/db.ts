@@ -22,14 +22,58 @@ function parseJsonArray(value: unknown): string[] {
 
 export { isMysqlConfigured };
 
-export async function findUserByEmail(email: string) {
-  const rows = await queryRows<(IUser & RowDataPacket)[]>(
+export async function findUserById(id: number) {
+  const rows = await queryRows<(RowDataPacket & Record<string, unknown>)[]>(
     `SELECT id, name, email, password_hash AS passwordHash, company, role,
+            COALESCE(email_verified, 0) AS emailVerified,
+            email_verified_at AS emailVerifiedAt,
+            created_at AS createdAt, updated_at AS updatedAt
+     FROM users WHERE id = :id LIMIT 1`,
+    { id }
+  );
+  const row = rows[0];
+  if (!row) return null;
+  return {
+    id: row.id as number,
+    name: String(row.name),
+    email: String(row.email),
+    passwordHash: String(row.passwordHash),
+    company: row.company ? String(row.company) : undefined,
+    role: row.role as UserRole,
+    emailVerified: Boolean(row.emailVerified),
+    emailVerifiedAt: row.emailVerifiedAt
+      ? new Date(String(row.emailVerifiedAt))
+      : null,
+    createdAt: row.createdAt ? new Date(String(row.createdAt)) : undefined,
+    updatedAt: row.updatedAt ? new Date(String(row.updatedAt)) : undefined,
+  } satisfies IUser;
+}
+
+export async function findUserByEmail(email: string) {
+  const rows = await queryRows<(RowDataPacket & Record<string, unknown>)[]>(
+    `SELECT id, name, email, password_hash AS passwordHash, company, role,
+            COALESCE(email_verified, 0) AS emailVerified,
+            email_verified_at AS emailVerifiedAt,
             created_at AS createdAt, updated_at AS updatedAt
      FROM users WHERE email = :email LIMIT 1`,
     { email: email.toLowerCase() }
   );
-  return rows[0] ?? null;
+  const row = rows[0];
+  if (!row) return null;
+  return {
+    id: row.id as number,
+    name: String(row.name),
+    email: String(row.email),
+    passwordHash: String(row.passwordHash),
+    company: row.company ? String(row.company) : undefined,
+    role: row.role as UserRole,
+    emailVerified: Boolean(row.emailVerified),
+    emailVerifiedAt: row.emailVerifiedAt
+      ? new Date(String(row.emailVerifiedAt))
+      : null,
+    createdAt: row.createdAt ? new Date(String(row.createdAt)) : undefined,
+    updatedAt: row.updatedAt ? new Date(String(row.updatedAt)) : undefined,
+  } satisfies IUser;
 }
 
 export async function createUser(input: {
@@ -40,8 +84,8 @@ export async function createUser(input: {
   role?: UserRole;
 }) {
   const result = await execute(
-    `INSERT INTO users (name, email, password_hash, company, role)
-     VALUES (:name, :email, :passwordHash, :company, :role)`,
+    `INSERT INTO users (name, email, password_hash, company, role, email_verified)
+     VALUES (:name, :email, :passwordHash, :company, :role, 0)`,
     {
       name: input.name,
       email: input.email.toLowerCase(),
@@ -50,7 +94,76 @@ export async function createUser(input: {
       role: input.role ?? "buyer",
     }
   );
-  return result.insertId;
+  return Number(result.insertId);
+}
+
+export async function createAuthToken(input: {
+  userId: number;
+  token: string;
+  type: "email_verify" | "password_reset";
+  expiresAt: Date;
+}) {
+  await execute(
+    `INSERT INTO auth_tokens (user_id, token, type, expires_at)
+     VALUES (:userId, :token, :type, :expiresAt)`,
+    {
+      userId: input.userId,
+      token: input.token,
+      type: input.type,
+      expiresAt: input.expiresAt.toISOString().slice(0, 19).replace("T", " "),
+    }
+  );
+}
+
+export async function findValidAuthToken(
+  token: string,
+  type: "email_verify" | "password_reset"
+) {
+  const rows = await queryRows<RowDataPacket[]>(
+    `SELECT id, user_id AS userId, token, type, expires_at AS expiresAt, used_at AS usedAt
+     FROM auth_tokens
+     WHERE token = :token AND type = :type AND used_at IS NULL AND expires_at > UTC_TIMESTAMP()
+     LIMIT 1`,
+    { token, type }
+  );
+  const row = rows[0];
+  if (!row) return null;
+  return {
+    id: Number(row.id),
+    userId: Number(row.userId),
+    token: String(row.token),
+    type: row.type as "email_verify" | "password_reset",
+    expiresAt: new Date(String(row.expiresAt)),
+    usedAt: row.usedAt ? new Date(String(row.usedAt)) : null,
+  };
+}
+
+export async function markAuthTokenUsed(tokenId: number) {
+  await execute(
+    `UPDATE auth_tokens SET used_at = UTC_TIMESTAMP() WHERE id = :id`,
+    { id: tokenId }
+  );
+}
+
+export async function markUserEmailVerified(userId: number) {
+  await execute(
+    `UPDATE users
+     SET email_verified = 1, email_verified_at = UTC_TIMESTAMP()
+     WHERE id = :id`,
+    { id: userId }
+  );
+}
+
+export async function invalidateUserTokens(
+  userId: number,
+  type: "email_verify" | "password_reset"
+) {
+  await execute(
+    `UPDATE auth_tokens
+     SET used_at = UTC_TIMESTAMP()
+     WHERE user_id = :userId AND type = :type AND used_at IS NULL`,
+    { userId, type }
+  );
 }
 
 export async function listProductCategories(): Promise<IProductCategory[]> {
@@ -153,20 +266,43 @@ export async function listJobOpenings(): Promise<IJobOpening[]> {
 export async function createContactLead(
   input: Omit<IContactLead, "createdAt">
 ) {
-  await execute(
+  const result = await execute(
     `INSERT INTO contact_leads
       (first_name, last_name, email, phone, company, subject, message)
      VALUES (:firstName, :lastName, :email, :phone, :company, :subject, :message)`,
     {
       firstName: input.firstName,
       lastName: input.lastName,
-      email: input.email,
+      email: input.email.toLowerCase(),
       phone: input.phone ?? null,
       company: input.company ?? null,
       subject: input.subject,
       message: input.message,
     }
   );
+  return Number(result.insertId);
+}
+
+export async function listContactLeads(limit = 50) {
+  const rows = await queryRows<RowDataPacket[]>(
+    `SELECT id, first_name AS firstName, last_name AS lastName, email, phone,
+            company, subject, message, created_at AS createdAt
+     FROM contact_leads
+     ORDER BY created_at DESC
+     LIMIT :limit`,
+    { limit }
+  );
+  return rows.map((row) => ({
+    id: Number(row.id),
+    firstName: String(row.firstName),
+    lastName: String(row.lastName),
+    email: String(row.email),
+    phone: row.phone ? String(row.phone) : undefined,
+    company: row.company ? String(row.company) : undefined,
+    subject: String(row.subject),
+    message: String(row.message),
+    createdAt: new Date(String(row.createdAt)),
+  }));
 }
 
 export async function upsertNewsletterSubscriber(email: string) {

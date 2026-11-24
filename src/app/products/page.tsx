@@ -46,7 +46,7 @@ export default async function ProductsPage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(26_126_0_/_0.08),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(34_49_64_/_0.06),transparent_40%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Product"
@@ -57,9 +57,9 @@ export default async function ProductsPage() {
             {categories.map((category) => (
               <Card
                 key={category.slug}
-                className="group h-full border-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group h-full overflow-hidden rounded-lg border-border/70 shadow-[0_8px_30px_rgba(34,49,64,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-brand/35 hover:shadow-[0_16px_40px_rgba(34,49,64,0.08)]"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div id={category.slug} className="relative aspect-[4/3] scroll-mt-28 overflow-hidden">
                   <Image
                     src={category.imageUrl}
                     alt={category.name}
@@ -72,9 +72,9 @@ export default async function ProductsPage() {
                   <Badge className="w-fit bg-brand/15 text-brand hover:bg-brand/15">
                     {category.badge}
                   </Badge>
-                  <CardTitle className="font-heading text-lg font-bold">
+                  <h3 className="font-heading text-lg font-bold text-ink">
                     {category.name}
-                  </CardTitle>
+                  </h3>
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col">
                   <p className="text-sm text-muted-foreground">

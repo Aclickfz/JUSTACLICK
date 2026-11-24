@@ -66,8 +66,17 @@ export function SignupForm() {
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Unable to create account");
-      toast.success("Account created. Please sign in.");
-      router.push("/login");
+      toast.success(
+        json.message ||
+          "Account created. Check your email to verify before signing in."
+      );
+      if (json.verifyUrl && typeof window !== "undefined") {
+        // Dev fallback when SMTP is off — open verify link hint
+        console.info("Verify URL (SMTP off):", json.verifyUrl);
+      }
+      router.push(
+        `/login?verify=1&email=${encodeURIComponent(String(data.get("email") || ""))}`
+      );
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Something went wrong"

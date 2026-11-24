@@ -2,20 +2,34 @@
 USE justaclick;
 
 -- ========== USERS ==========
--- Signup
-INSERT INTO users (name, email, password_hash, company, role)
-VALUES (?, ?, ?, ?, ?);
+-- Signup (unverified until email link)
+INSERT INTO users (name, email, password_hash, company, role, email_verified)
+VALUES (?, ?, ?, ?, ?, 0);
 
 -- Find by email (login)
-SELECT id, name, email, password_hash, company, role, created_at, updated_at
+SELECT id, name, email, password_hash, company, role,
+       email_verified, email_verified_at, created_at, updated_at
 FROM users
 WHERE email = ?
 LIMIT 1;
 
+-- Mark verified
+UPDATE users
+SET email_verified = 1, email_verified_at = UTC_TIMESTAMP()
+WHERE id = ?;
+
 -- List users
-SELECT id, name, email, company, role, created_at
+SELECT id, name, email, company, role, email_verified, created_at
 FROM users
 ORDER BY created_at DESC;
+
+-- Auth tokens
+INSERT INTO auth_tokens (user_id, token, type, expires_at)
+VALUES (?, ?, 'email_verify', ?);
+
+SELECT * FROM auth_tokens
+WHERE token = ? AND type = 'email_verify' AND used_at IS NULL AND expires_at > UTC_TIMESTAMP()
+LIMIT 1;
 
 -- ========== PRODUCT CATEGORIES ==========
 SELECT id, slug, name, badge, description, items, cta, image_url AS imageUrl

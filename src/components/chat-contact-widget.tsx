@@ -45,7 +45,7 @@ export function ChatContactWidget() {
         type="button"
         onClick={() => setOpen((value) => !value)}
         className={cn(
-          "pointer-events-auto flex size-14 items-center justify-center rounded-full bg-brand text-white shadow-[0_12px_30px_rgba(26,126,0,0.45)] transition hover:bg-[#0e6118] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
+          "pointer-events-auto flex size-14 items-center justify-center rounded-full bg-brand text-white shadow-[0_12px_30px_rgba(34,49,64,0.35)] transition hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
           open && "bg-navy hover:bg-navy-deep"
         )}
         aria-label={open ? "Close contact chat" : "Open contact chat"}

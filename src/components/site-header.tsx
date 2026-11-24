@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ChevronDown, Mail, Menu, Phone } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -23,7 +23,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { AccountMenu } from "@/components/account-menu";
 import { useEffect, useState, type SVGProps } from "react";
 
 const exploreLinks = [
@@ -53,20 +60,6 @@ const networkLinks = [
   { href: "/investors", label: "Investors" },
   { href: "/media", label: "Media" },
   { href: "/careers", label: "Careers" },
-];
-
-const accountLinks = [
-  { href: "/login", label: "Login" },
-  { href: "/signup", label: "Sign Up" },
-];
-
-const mobileLinks = [
-  ...exploreLinks,
-  ...companyLinks,
-  ...storyLinks,
-  ...networkLinks,
-  { href: "/#contact", label: "Contact" },
-  ...accountLinks,
 ];
 
 function IconX(props: SVGProps<SVGSVGElement>) {
@@ -118,8 +111,8 @@ function NavTrigger({
   return (
     <DropdownMenuTrigger
       className={cn(
-        "inline-flex items-center gap-1 px-3 py-2 text-[13px] font-semibold tracking-[0.08em] uppercase outline-none transition-colors",
-        active ? "text-brand" : "text-white/85 hover:text-brand"
+        "inline-flex items-center gap-1 px-3 py-2 text-[13px] font-semibold tracking-[0.06em] uppercase outline-none transition-colors",
+        active ? "text-navy-deep" : "text-ink/80 hover:text-navy-deep"
       )}
     >
       {label}
@@ -128,19 +121,44 @@ function NavTrigger({
   );
 }
 
+function MenuLink({
+  href,
+  label,
+  onNavigate,
+  active,
+}: {
+  href: string;
+  label: string;
+  onNavigate?: () => void;
+  active?: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onNavigate}
+      className={cn(
+        "block rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
+        active ? "bg-mist text-navy-deep" : "text-foreground hover:bg-mist"
+      )}
+    >
+      {label}
+    </Link>
+  );
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     let lastY = window.scrollY;
 
     const onScroll = () => {
       const y = window.scrollY;
+      setScrolled(y > 8);
       const goingDown = y > lastY;
-      // Hide while scrolling down past a small threshold; show on scroll up / top
       if (goingDown && y > 64) {
         setHidden(true);
         setOpen(false);
@@ -154,13 +172,9 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  function go(href: string) {
-    router.push(href);
-  }
-
-  const exploreActive = exploreLinks.some(
-    (l) => l.href !== "/" && pathname.startsWith(l.href)
-  ) || pathname === "/";
+  const exploreActive =
+    exploreLinks.some((l) => l.href !== "/" && pathname.startsWith(l.href)) ||
+    pathname === "/";
   const companyActive =
     companyLinks.some((l) => pathname.startsWith(l.href)) ||
     storyLinks.some((l) => pathname.startsWith(l.href));
@@ -169,206 +183,262 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full bg-navy text-white shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-transform duration-300 will-change-transform",
+        "sticky top-0 z-50 w-full transition-transform duration-300 will-change-transform",
         hidden && "-translate-y-full"
       )}
     >
-      <div className="hidden border-b border-white/10 bg-navy-deep sm:block">
-        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-4 py-2.5 text-[12px] text-white/65 sm:px-6 lg:px-8">
-          <div className="flex min-w-0 flex-wrap items-center gap-x-5 gap-y-1">
+      {/* Finanzia-style dark topbar */}
+      <div className="hidden bg-navy-deep sm:block">
+        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-4 py-2.5 text-[12px] text-white/70 sm:px-6 lg:px-8">
+          <p className="min-w-0 truncate">
+            Committed to clients, focused on results!{" "}
+            <Link
+              href="/login"
+              className="font-semibold text-white underline-offset-2 hover:underline"
+            >
+              Account →
+            </Link>
+          </p>
+          <div className="flex shrink-0 items-center gap-4">
             <a
               href="tel:+917088671662"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
             >
-              <Phone className="size-3.5 shrink-0 text-brand" />
-              <span className="truncate">
-                Phone: <span className="text-white/80">+91 7088671662</span>
-              </span>
+              <Phone className="size-3.5 shrink-0" />
+              <span>+91 7088671662</span>
             </a>
             <a
               href="mailto:info@justaclick.com"
-              className="inline-flex max-w-full items-center gap-1.5 transition-colors hover:text-white"
+              className="hidden items-center gap-1.5 transition-colors hover:text-white md:inline-flex"
             >
-              <Mail className="size-3.5 shrink-0 text-brand" />
-              <span className="truncate">
-                Email:{" "}
-                <span className="text-white/80">info@justaclick.com</span>
-              </span>
+              <Mail className="size-3.5 shrink-0" />
+              <span>info@justaclick.com</span>
             </a>
-          </div>
-
-          <div className="flex shrink-0 items-center gap-1">
-            {socialLinks.map(({ href, label, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-                className="inline-flex size-7 items-center justify-center rounded-sm text-white/55 transition-colors hover:bg-white/10 hover:text-white"
-              >
-                <Icon className="size-3.5" />
-              </a>
-            ))}
+            <div className="flex items-center gap-0.5 border-l border-white/15 pl-3">
+              {socialLinks.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="inline-flex size-7 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  <Icon className="size-3.5" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto flex w-full max-w-[1400px] min-h-[64px] items-center gap-2 px-3 py-2.5 sm:min-h-[74px] sm:gap-3 sm:px-6 sm:py-3 lg:px-8">
-        <Link
-          href="/"
-          className="relative z-10 block h-9 w-[130px] shrink-0 bg-transparent sm:h-11 sm:w-[180px]"
-        >
-          <Image
-            src="/logo/justaclick-logo.png"
-            alt="Just A Click"
-            fill
-            priority
-            sizes="180px"
-            className="bg-transparent object-contain object-left brightness-0 invert"
-          />
-        </Link>
+      {/* White main nav like Finanzia */}
+      <div
+        className={cn(
+          "border-b border-border/80 bg-white text-ink transition-shadow",
+          scrolled && "shadow-[0_8px_30px_rgba(5,20,35,0.08)]"
+        )}
+      >
+        <div className="mx-auto flex w-full max-w-[1400px] min-h-[64px] items-center gap-2 px-3 py-2.5 sm:min-h-[78px] sm:gap-3 sm:px-6 sm:py-3 lg:px-8">
+          <Link
+            href="/"
+            className="relative z-10 block h-9 w-[130px] shrink-0 bg-transparent sm:h-11 sm:w-[180px]"
+          >
+            <Image
+              src="/logo/justaclick-logo.png"
+              alt="Just A Click"
+              fill
+              priority
+              sizes="180px"
+              className="bg-transparent object-contain object-left"
+            />
+          </Link>
 
-        <nav className="ml-auto hidden items-center gap-0.5 lg:flex">
-          <DropdownMenu>
-            <NavTrigger label="Explore" active={exploreActive} />
-            <DropdownMenuContent align="start" className="min-w-52 z-[100]">
-              <DropdownMenuGroup>
-                {exploreLinks.map((link) => (
-                  <DropdownMenuItem key={link.href} onClick={() => go(link.href)}>
-                    {link.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-            <NavTrigger label="Company" active={companyActive} />
-            <DropdownMenuContent align="start" className="min-w-56 z-[100]">
-              <DropdownMenuGroup>
-                {companyLinks.map((link) => (
-                  <DropdownMenuItem key={link.href} onClick={() => go(link.href)}>
-                    {link.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>Our Story</DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="z-[110]">
-                  {storyLinks.map((link) => (
+          <nav className="ml-auto hidden items-center gap-0.5 lg:flex">
+            <DropdownMenu>
+              <NavTrigger label="Explore" active={exploreActive} />
+              <DropdownMenuContent align="start" className="z-[100] min-w-52">
+                <DropdownMenuGroup>
+                  {exploreLinks.map((link) => (
                     <DropdownMenuItem
                       key={link.href}
-                      onClick={() => go(link.href)}
+                      render={<Link href={link.href} />}
                     >
                       {link.label}
                     </DropdownMenuItem>
                   ))}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-          <DropdownMenu>
-            <NavTrigger label="Network" active={networkActive} />
-            <DropdownMenuContent align="start" className="min-w-60 z-[100]">
-              <DropdownMenuGroup>
-                {networkLinks.map((link) => (
-                  <DropdownMenuItem key={link.href} onClick={() => go(link.href)}>
-                    {link.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            <DropdownMenu>
+              <NavTrigger label="Company" active={companyActive} />
+              <DropdownMenuContent align="start" className="z-[100] min-w-56">
+                <DropdownMenuGroup>
+                  {companyLinks.map((link) => (
+                    <DropdownMenuItem
+                      key={link.href}
+                      render={<Link href={link.href} />}
+                    >
+                      {link.label}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Our Story</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent className="z-[110]">
+                    {storyLinks.map((link) => (
+                      <DropdownMenuItem
+                        key={link.href}
+                        render={<Link href={link.href} />}
+                      >
+                        {link.label}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-          <Link
-            href="/#contact"
-            className={cn(
-              "px-3 py-2 text-[13px] font-semibold tracking-[0.08em] uppercase transition-colors",
-              "text-white/85 hover:text-brand"
-            )}
-          >
-            Contact
-          </Link>
-        </nav>
+            <DropdownMenu>
+              <NavTrigger label="Network" active={networkActive} />
+              <DropdownMenuContent align="start" className="z-[100] min-w-60">
+                <DropdownMenuGroup>
+                  {networkLinks.map((link) => (
+                    <DropdownMenuItem
+                      key={link.href}
+                      render={<Link href={link.href} />}
+                    >
+                      {link.label}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-        <div className="hidden items-center lg:flex">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="btn-brand inline-flex items-center gap-1 rounded-md px-5 py-2.5 text-[12px] font-bold tracking-[0.12em] uppercase outline-none">
-              Account
-              <ChevronDown className="size-3.5 opacity-90" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-40 z-[100]">
-              <DropdownMenuGroup>
-                {accountLinks.map((link) => (
-                  <DropdownMenuItem key={link.href} onClick={() => go(link.href)}>
-                    {link.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
-        <div className="ml-auto flex items-center gap-2 lg:hidden">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="btn-brand inline-flex items-center gap-1 rounded-md px-3 py-2 text-[11px] font-bold tracking-[0.1em] uppercase outline-none">
-              Account
-              <ChevronDown className="size-3 opacity-90" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-40 z-[100]">
-              <DropdownMenuGroup>
-                {accountLinks.map((link) => (
-                  <DropdownMenuItem key={link.href} onClick={() => go(link.href)}>
-                    {link.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "text-white hover:bg-white/10 hover:text-white"
-              )}
+            <Link
+              href="/#contact"
+              className="px-3 py-2 text-[13px] font-semibold tracking-[0.06em] text-ink/80 uppercase transition-colors hover:text-navy-deep"
             >
-              <Menu className="size-5" />
-              <span className="sr-only">Open menu</span>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[340px]">
-              <SheetHeader>
-                <SheetTitle className="sr-only">Just A Click menu</SheetTitle>
-                <div className="relative h-9 w-[150px] bg-transparent">
-                  <Image
-                    src="/logo/justaclick-logo.png"
-                    alt="Just A Click"
-                    fill
-                    className="bg-transparent object-contain object-left"
+              Contact
+            </Link>
+          </nav>
+
+          <div className="hidden items-center lg:flex">
+            <AccountMenu size="md" />
+          </div>
+
+          <div className="ml-auto flex items-center gap-2 lg:hidden">
+            <AccountMenu size="sm" />
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "text-ink hover:bg-mist"
+                )}
+              >
+                <Menu className="size-5" />
+                <span className="sr-only">Open menu</span>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[340px]">
+                <SheetHeader>
+                  <SheetTitle className="sr-only">Just A Click menu</SheetTitle>
+                  <div className="relative h-9 w-[150px] bg-transparent">
+                    <Image
+                      src="/logo/justaclick-logo.png"
+                      alt="Just A Click"
+                      fill
+                      className="bg-transparent object-contain object-left"
+                    />
+                  </div>
+                </SheetHeader>
+                <div className="mt-4 flex max-h-[80vh] flex-col gap-2 overflow-y-auto pb-8">
+                  <Accordion>
+                    <AccordionItem value="explore">
+                      <AccordionTrigger className="px-1 text-sm font-semibold tracking-wide uppercase">
+                        Explore
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="flex flex-col gap-0.5 pb-2">
+                          {exploreLinks.map((link) => (
+                            <MenuLink
+                              key={link.href}
+                              {...link}
+                              active={pathname === link.href}
+                              onNavigate={() => setOpen(false)}
+                            />
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="company">
+                      <AccordionTrigger className="px-1 text-sm font-semibold tracking-wide uppercase">
+                        Company
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="flex flex-col gap-0.5 pb-2">
+                          {[...companyLinks, ...storyLinks].map((link) => (
+                            <MenuLink
+                              key={link.href}
+                              {...link}
+                              active={pathname === link.href}
+                              onNavigate={() => setOpen(false)}
+                            />
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="network">
+                      <AccordionTrigger className="px-1 text-sm font-semibold tracking-wide uppercase">
+                        Network
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="flex flex-col gap-0.5 pb-2">
+                          {networkLinks.map((link) => (
+                            <MenuLink
+                              key={link.href}
+                              {...link}
+                              active={pathname === link.href}
+                              onNavigate={() => setOpen(false)}
+                            />
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+
+                  <MenuLink
+                    href="/#contact"
+                    label="Contact"
+                    onNavigate={() => setOpen(false)}
                   />
+                  <div className="mt-3 grid gap-2 border-t border-border pt-4">
+                    <Link
+                      href="/login"
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        buttonVariants({ variant: "outline", size: "lg" }),
+                        "w-full rounded-full"
+                      )}
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/signup"
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        buttonVariants({ size: "lg" }),
+                        "btn-brand w-full"
+                      )}
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
                 </div>
-              </SheetHeader>
-              <div className="mt-6 flex max-h-[80vh] flex-col gap-1 overflow-y-auto">
-                {mobileLinks.map((link) => (
-                  <Link
-                    key={link.href + link.label}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "rounded-md px-3 py-2.5 text-base font-medium transition-colors",
-                      pathname === link.href
-                        ? "bg-brand/10 text-brand"
-                        : "text-foreground hover:bg-mist"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>

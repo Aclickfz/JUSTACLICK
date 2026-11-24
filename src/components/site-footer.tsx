@@ -4,21 +4,30 @@ import { Separator } from "@/components/ui/separator";
 
 const companyLinks = [
   { href: "/about", label: "About Us" },
+  { href: "/team", label: "Team" },
+  { href: "/careers", label: "Careers" },
+  { href: "/news", label: "News" },
+  { href: "/investors", label: "Investors" },
+];
+
+const exploreLinks = [
   { href: "/services", label: "Services" },
   { href: "/products", label: "Products" },
   { href: "/portfolio", label: "Portfolio" },
-  { href: "/news", label: "News" },
-  { href: "/careers", label: "Careers" },
-  { href: "/investors", label: "Investors" },
+  { href: "/innovation", label: "Innovation" },
+  { href: "/suppliers", label: "Suppliers" },
   { href: "/#contact", label: "Contact" },
 ];
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-ink text-white">
-      <div className="section-shell grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="border-t border-white/10 bg-navy-deep text-white">
+      <div className="section-shell grid gap-10 py-14 sm:py-16 md:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-1">
-          <Link href="/" className="relative mb-4 block h-10 w-[170px] bg-transparent">
+          <Link
+            href="/"
+            className="relative mb-4 block h-10 w-[170px] bg-transparent"
+          >
             <Image
               src="/logo/justaclick-logo.png"
               alt="Just A Click"
@@ -31,6 +40,12 @@ export function SiteFooter() {
             Your complete home furnishing partner — designing, manufacturing,
             and delivering worldwide with a supply chain built for growth.
           </p>
+          <Link
+            href="/login"
+            className="btn-brand mt-6 inline-flex px-6 py-2.5 text-xs font-bold tracking-[0.12em] uppercase"
+          >
+            Account
+          </Link>
         </div>
 
         <div>
@@ -42,7 +57,25 @@ export function SiteFooter() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition-colors hover:text-brand"
+                  className="transition-colors hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="mb-4 text-xs font-semibold tracking-[0.18em] text-white/40 uppercase">
+            Explore
+          </h4>
+          <ul className="space-y-3 text-sm text-white/65">
+            {exploreLinks.map((link) => (
+              <li key={link.href + link.label}>
+                <Link
+                  href={link.href}
+                  className="transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -60,7 +93,7 @@ export function SiteFooter() {
               Email:{" "}
               <a
                 href="mailto:info@justaclick.com"
-                className="transition-colors hover:text-brand"
+                className="transition-colors hover:text-white"
               >
                 info@justaclick.com
               </a>
@@ -69,7 +102,7 @@ export function SiteFooter() {
               Phone:{" "}
               <a
                 href="tel:+917088671662"
-                className="transition-colors hover:text-brand"
+                className="transition-colors hover:text-white"
               >
                 +91 7088671662
               </a>
@@ -77,32 +110,16 @@ export function SiteFooter() {
             <li>Global operations & partner network</li>
           </ul>
         </div>
-
-        <div>
-          <h4 className="mb-4 text-xs font-semibold tracking-[0.18em] text-white/40 uppercase">
-            Grow With Us
-          </h4>
-          <p className="text-sm leading-relaxed text-white/65">
-            Buyers, vendors, and partners — one platform to design, produce, and
-            deliver with confidence.
-          </p>
-          <Link
-            href="/signup"
-            className="mt-5 inline-flex text-sm font-semibold text-brand hover:text-white"
-          >
-            Create an account →
-          </Link>
-        </div>
       </div>
 
       <Separator className="bg-white/10" />
       <div className="section-shell flex flex-col gap-2 py-6 text-sm text-white/40 sm:flex-row sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} Just A Click. All rights reserved.</p>
         <div className="flex gap-6">
-          <Link href="/terms" className="transition-colors hover:text-brand">
+          <Link href="/terms" className="transition-colors hover:text-white">
             Terms
           </Link>
-          <Link href="/privacy" className="transition-colors hover:text-brand">
+          <Link href="/privacy" className="transition-colors hover:text-white">
             Privacy
           </Link>
         </div>

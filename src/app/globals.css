@@ -55,45 +55,45 @@
 }
 
 :root {
-  /* Finanzia: slate navy + green accent */
-  --background: #f9f9f9;
+  /* Finanzia live demo: slate primary, deep navy, white surfaces, pill CTAs */
+  --background: #ffffff;
   --foreground: #223140;
   --ink: #223140;
   --navy: #223140;
   --navy-deep: #051423;
-  --mist: #eef1f3;
-  --brand: #1a7e00;
+  --mist: #f3f7fb;
+  --brand: #223140;
   --brand-foreground: #ffffff;
   --card: #ffffff;
   --card-foreground: #223140;
   --popover: #ffffff;
   --popover-foreground: #223140;
-  --primary: #1a7e00;
+  --primary: #223140;
   --primary-foreground: #ffffff;
-  --secondary: #eef1f3;
+  --secondary: #f3f7fb;
   --secondary-foreground: #223140;
   --muted: #eef1f3;
   --muted-foreground: #42484e;
-  --accent: #d7f6f0;
-  --accent-foreground: #03452f;
+  --accent: #eef1f3;
+  --accent-foreground: #051423;
   --destructive: #dc2626;
   --border: #e4e9f1;
   --input: #e4e9f1;
-  --ring: #1a7e00;
-  --chart-1: #1a7e00;
-  --chart-2: #223140;
-  --chart-3: #0e6118;
+  --ring: #223140;
+  --chart-1: #223140;
+  --chart-2: #051423;
+  --chart-3: #00226c;
   --chart-4: #677a74;
-  --chart-5: #6e997f;
+  --chart-5: #6d6fb3;
   --radius: 0.5rem;
-  --sidebar: #f9f9f9;
+  --sidebar: #ffffff;
   --sidebar-foreground: #223140;
-  --sidebar-primary: #1a7e00;
+  --sidebar-primary: #223140;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #d7f6f0;
-  --sidebar-accent-foreground: #03452f;
+  --sidebar-accent: #f3f7fb;
+  --sidebar-accent-foreground: #051423;
   --sidebar-border: #e4e9f1;
-  --sidebar-ring: #1a7e00;
+  --sidebar-ring: #223140;
 }
 
 .dark {
@@ -102,38 +102,38 @@
   --ink: #f9f9f9;
   --navy: #223140;
   --navy-deep: #051423;
-  --mist: #1c3930;
-  --brand: #6e997f;
+  --mist: #152232;
+  --brand: #e4e9f1;
   --brand-foreground: #051423;
-  --card: #0a1a14;
+  --card: #0c1824;
   --card-foreground: #f9f9f9;
-  --popover: #0a1a14;
+  --popover: #0c1824;
   --popover-foreground: #f9f9f9;
-  --primary: #6e997f;
+  --primary: #e4e9f1;
   --primary-foreground: #051423;
-  --secondary: #1c3930;
+  --secondary: #152232;
   --secondary-foreground: #f9f9f9;
-  --muted: #1c3930;
+  --muted: #152232;
   --muted-foreground: #b1b9c1;
-  --accent: #023021;
-  --accent-foreground: #d7f6f0;
+  --accent: #1a2a3a;
+  --accent-foreground: #f3f7fb;
   --destructive: #f87171;
   --border: rgb(255 255 255 / 12%);
   --input: rgb(255 255 255 / 14%);
-  --ring: #6e997f;
-  --chart-1: #6e997f;
+  --ring: #e4e9f1;
+  --chart-1: #e4e9f1;
   --chart-2: #b1b9c1;
-  --chart-3: #89b49b;
+  --chart-3: #6d6fb3;
   --chart-4: #677a74;
-  --chart-5: #1a7e00;
-  --sidebar: #0a1a14;
+  --chart-5: #223140;
+  --sidebar: #0c1824;
   --sidebar-foreground: #f9f9f9;
-  --sidebar-primary: #6e997f;
+  --sidebar-primary: #e4e9f1;
   --sidebar-primary-foreground: #051423;
-  --sidebar-accent: #023021;
-  --sidebar-accent-foreground: #d7f6f0;
+  --sidebar-accent: #1a2a3a;
+  --sidebar-accent-foreground: #f3f7fb;
   --sidebar-border: rgb(255 255 255 / 12%);
-  --sidebar-ring: #6e997f;
+  --sidebar-ring: #e4e9f1;
 }
 
 @layer base {
@@ -143,15 +143,6 @@
   body {
     @apply bg-background text-foreground;
     overflow-x: clip;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 100% -20%, rgb(26 126 0 / 0.1), transparent),
-      radial-gradient(ellipse 60% 40% at -10% 40%, rgb(5 20 35 / 0.06), transparent);
-    background-attachment: fixed;
-  }
-  .dark body {
-    background-image:
-      radial-gradient(ellipse 80% 50% at 100% -20%, rgb(110 153 127 / 0.15), transparent),
-      radial-gradient(ellipse 60% 40% at -10% 40%, rgb(255 255 255 / 0.04), transparent);
   }
   html {
     @apply font-sans scroll-smooth;
@@ -175,10 +166,8 @@
     font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
   }
   .text-gradient {
-    background-image: linear-gradient(120deg, #1a7e00, #0e6118 55%, #223140);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    /* Used on light backgrounds — slate accent like Finanzia titles */
+    color: #051423;
   }
   .section-shell {
     @apply relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
@@ -187,21 +176,21 @@
     background:
       linear-gradient(
         105deg,
-        rgb(5 20 35 / 0.92) 0%,
-        rgb(34 49 64 / 0.8) 48%,
-        rgb(26 126 0 / 0.32) 100%
+        rgb(5 20 35 / 0.88) 0%,
+        rgb(34 49 64 / 0.72) 55%,
+        rgb(5 20 35 / 0.55) 100%
       );
   }
   .surface-panel {
-    @apply border border-border/80 bg-card/80 backdrop-blur-sm;
+    @apply border border-border/80 bg-card shadow-[0_8px_30px_rgba(5,20,35,0.04)];
   }
   .btn-brand {
-    @apply bg-brand text-brand-foreground shadow-[0_8px_20px_rgba(26,126,0,0.28)] transition-colors hover:bg-[#0e6118];
+    @apply rounded-full bg-brand text-brand-foreground shadow-[0_8px_24px_rgba(34,49,64,0.22)] transition-colors hover:bg-navy-deep;
   }
   .link-brand {
-    @apply text-brand transition-colors hover:text-[#0e6118];
+    @apply text-brand transition-colors hover:text-navy-deep;
   }
   .chip-brand {
-    @apply border border-brand/25 bg-brand/10 text-brand;
+    @apply border border-brand/15 bg-mist text-brand;
   }
 }

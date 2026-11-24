@@ -73,7 +73,7 @@ export default function PurposePage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(26_126_0_/_0.08),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(34_49_64_/_0.06),transparent_40%)]" />
         <div className="section-shell relative">
           <p className="mb-12 max-w-3xl text-lg leading-relaxed text-muted-foreground">
             Just A Click exists to make home furnishing sourcing, manufacturing,

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const payload = {
       firstName: String(firstName).trim(),
       lastName: String(lastName).trim(),
-      email: String(email).trim(),
+      email: String(email).trim().toLowerCase(),
       phone: phone ? String(phone).trim() : undefined,
       company: company ? String(company).trim() : undefined,
       subject: String(subject).trim(),
@@ -29,17 +29,27 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error:
-            "Contact is not configured. Add SMTP_* or MYSQL_* in .env.local.",
+            "Contact is not configured. Add MYSQL_* (and optionally SMTP_*) in .env.local.",
         },
         { status: 503 }
       );
     }
 
+    let leadId: number | null = null;
+
+    // Prefer storing every enquiry in MySQL when configured
     if (isMysqlConfigured()) {
       try {
-        await createContactLead(payload);
+        leadId = await createContactLead(payload);
       } catch (dbError) {
         console.error("Contact DB save failed:", dbError);
+        return NextResponse.json(
+          {
+            error:
+              "Unable to save your enquiry in the database. Please try again.",
+          },
+          { status: 500 }
+        );
       }
     }
 
@@ -49,6 +59,17 @@ export async function POST(request: Request) {
         mailMeta = await sendContactEmails(payload);
       } catch (mailError) {
         console.error("Contact email failed:", mailError);
+        // DB already saved — report partial success
+        if (leadId) {
+          return NextResponse.json({
+            ok: true,
+            saved: true,
+            leadId,
+            emailed: { admin: false, user: false },
+            warning:
+              "Enquiry saved, but email notification failed. Our team still has your message.",
+          });
+        }
         return NextResponse.json(
           {
             error:
@@ -61,6 +82,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       ok: true,
+      saved: Boolean(leadId),
+      leadId,
       emailed: {
         admin: Boolean(mailMeta?.adminMessageId),
         adminTo: mailMeta?.adminTo ?? [],

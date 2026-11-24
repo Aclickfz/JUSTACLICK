@@ -61,7 +61,7 @@ export function WorkflowTabs() {
 
   return (
     <section id="workflow" className="relative overflow-hidden py-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_40%,rgb(26_126_0_/_0.08),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_40%,rgb(34_49_64_/_0.06),transparent_50%)]" />
       <div className="section-shell relative">
         <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
@@ -118,8 +118,8 @@ export function WorkflowTabs() {
 
               <defs>
                 <linearGradient id="cycleStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#6e997f" />
-                  <stop offset="100%" stopColor="#1a7e00" />
+                  <stop offset="0%" stopColor="#677a74" />
+                  <stop offset="100%" stopColor="#223140" />
                 </linearGradient>
                 <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
                   <feGaussianBlur stdDeviation="3" result="blur" />
@@ -144,8 +144,8 @@ export function WorkflowTabs() {
                         setPlaying(false);
                       }}
                       className="cursor-pointer"
-                      fill={isActive || isDone ? "#1a7e00" : "#ffffff"}
-                      stroke={isActive || isDone ? "#1a7e00" : "#e4e9f1"}
+                      fill={isActive || isDone ? "#223140" : "#ffffff"}
+                      stroke={isActive || isDone ? "#223140" : "#e4e9f1"}
                       strokeWidth={isActive ? 3 : 2}
                       filter={isActive ? "url(#nodeGlow)" : undefined}
                       animate={{
@@ -204,7 +204,7 @@ export function WorkflowTabs() {
                 style={{
                   fontSize: 28,
                   fontWeight: 800,
-                  fill: "#1a7e00",
+                  fill: "#223140",
                 }}
               >
                 {String(active + 1).padStart(2, "0")}

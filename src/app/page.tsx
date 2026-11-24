@@ -1,17 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowUpRight, Check } from "lucide-react";
+import {
+  Armchair,
+  Lamp,
+  Paintbrush,
+  Trees,
+  Shirt,
+  Sparkles,
+  Package,
+  Wrench,
+} from "lucide-react";
 import { HomeHero } from "@/components/home-hero";
-import { WorkflowTabs } from "@/components/workflow-tabs";
 import { StatsCounters } from "@/components/stats-counters";
 import { ContactForm } from "@/components/contact-form";
 import { SupplyChainGlobe } from "@/components/supply-chain-globe";
 import { SectionHeading } from "@/components/section-heading";
+import { FeatureStrip } from "@/components/finanzia/feature-strip";
+import { AboutSplit } from "@/components/finanzia/about-split";
+import { IconServiceGrid } from "@/components/finanzia/icon-service-grid";
+import { IndustryTiles } from "@/components/finanzia/industry-tiles";
+import { ProcessSteps } from "@/components/finanzia/process-steps";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { homeContent } from "@/content/home";
-import { productCategories } from "@/data/seed-data";
+import { productCategories, workflowStages } from "@/data/seed-data";
 
 export const metadata: Metadata = {
   title: {
@@ -28,118 +40,104 @@ export const metadata: Metadata = {
   },
 };
 
+const categoryIcons = [
+  Armchair,
+  Lamp,
+  Paintbrush,
+  Trees,
+  Shirt,
+  Sparkles,
+  Package,
+  Wrench,
+] as const;
+
 export default function HomePage() {
+  const serviceItems = productCategories.slice(0, 6).map((category, index) => ({
+    title: category.badge,
+    description: category.description,
+    href: `/products#${category.slug}`,
+    icon: categoryIcons[index] ?? Package,
+  }));
+
+  const industryItems = productCategories.slice(0, 8).map((category) => ({
+    name: category.badge,
+    href: `/products#${category.slug}`,
+    imageUrl: category.imageUrl,
+  }));
+
   return (
     <>
       <HomeHero />
 
+      <FeatureStrip items={homeContent.pillars} />
+
+      <AboutSplit
+        title="Our"
+        accent="Strategy for Excellence"
+        description={homeContent.strategy.description}
+        cards={homeContent.strategy.cards}
+      />
+
       <SupplyChainGlobe />
 
-      <section className="relative py-24">
+      <section className="py-20 sm:py-24">
         <div className="section-shell">
-          <SectionHeading
-            title="Our"
-            accent="Strategy for Excellence"
-            description={homeContent.strategy.description}
-          />
-          <div className="grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
-            {homeContent.strategy.cards.map((card) => (
-              <Link
-                key={card.href}
-                href={card.href}
-                className="group bg-card p-8 transition-colors hover:bg-mist sm:p-10"
-              >
-                <p className="text-xs font-semibold tracking-[0.18em] text-brand uppercase">
-                  Strategy
-                </p>
-                <h3 className="font-heading mt-3 text-2xl font-bold text-ink">
-                  {card.title}
-                </h3>
-                <ul className="mt-6 space-y-3">
-                  {card.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3 text-muted-foreground"
-                    >
-                      <Check className="mt-0.5 size-4 shrink-0 text-brand" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-all group-hover:gap-3 group-hover:text-brand">
-                  Learn More <ArrowUpRight className="size-4" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <WorkflowTabs />
-
-      <section className="bg-mist/70 py-24">
-        <div className="section-shell">
-          <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="mb-2 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               title="Categories"
               accent="We Serve"
               description="From furniture and lighting to decor and textiles — crafted for buyers, wholesalers, and vendors."
+              className="mb-0 md:mb-0"
             />
             <Link
               href="/products"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "btn-brand shrink-0 self-start md:mb-12"
+                "btn-brand shrink-0 self-start"
               )}
             >
               Explore Products
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {productCategories.slice(0, 8).map((category) => (
-              <article
-                key={category.slug}
-                className="group relative overflow-hidden border border-border bg-card"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={category.imageUrl}
-                    alt={category.name}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
-                  <p className="absolute bottom-3 left-3 text-xs font-semibold tracking-[0.16em] text-white uppercase">
-                    {category.badge}
-                  </p>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-heading text-lg font-bold text-ink">
-                    {category.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {category.description}
-                  </p>
-                </div>
-              </article>
-            ))}
+          <div className="mt-10">
+            <IconServiceGrid items={serviceItems} />
           </div>
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="bg-mist/70 py-20 sm:py-24">
+        <div className="section-shell">
+          <SectionHeading
+            title="Markets"
+            accent="& Collections"
+            description="Explore the categories buyers and partners trust Just A Click to deliver."
+          />
+          <IndustryTiles items={industryItems} />
+        </div>
+      </section>
+
+      <StatsCounters />
+
+      <ProcessSteps
+        title="Supply Chain"
+        accent="Workflow"
+        description={homeContent.workflow.description}
+        steps={workflowStages}
+      />
+
+      <section className="py-20 sm:py-24">
         <div className="section-shell grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <SectionHeading
             title="Why"
             accent="only Us"
             description="Consistency, accountability, and collaboration guide every project from concept to launch."
+            className="mb-0"
           />
           <div className="grid gap-3 sm:grid-cols-2">
             {homeContent.whyUs.points.map((point, index) => (
               <div
                 key={point}
-                className="border border-border bg-card/80 p-5 transition-colors hover:border-brand/40"
+                className="rounded-lg border border-border bg-card p-5 shadow-[0_8px_24px_rgba(34,49,64,0.04)] transition-colors hover:border-brand/40"
               >
                 <p className="font-heading text-sm font-bold text-brand">
                   {String(index + 1).padStart(2, "0")}
@@ -153,15 +151,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <StatsCounters />
-
-      <section id="start" className="py-24">
+      <section id="start" className="scroll-mt-28 pb-8 pt-4 sm:pb-12">
         <div className="section-shell">
-          <div className="relative overflow-hidden border border-border bg-ink px-6 py-14 text-center sm:px-12">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgb(26_126_0_/_0.25),transparent_45%)]" />
+          <div className="relative overflow-hidden rounded-lg border border-border bg-ink px-6 py-14 text-center sm:px-12">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgb(5_20_35_/_0.35),transparent_45%)]" />
             <div className="relative">
-              <h2 className="font-heading text-3xl font-bold text-white sm:text-5xl">
-                Ready to <span className="text-gradient">Grow Together?</span>
+              <p className="text-xs font-semibold tracking-[0.2em] text-white/55 uppercase">
+                Grow with us
+              </p>
+              <h2 className="font-heading mt-3 text-3xl font-bold text-white sm:text-5xl">
+                Ready to Grow Together?
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-white/60">
                 Sign in as a buyer or vendor and start building with Just A
@@ -172,7 +171,7 @@ export default function HomePage() {
                   href="/login"
                   className={cn(
                     buttonVariants({ size: "lg" }),
-                    "btn-brand h-12 px-8"
+                    "h-12 w-full rounded-full bg-white px-8 text-navy-deep hover:bg-white/90 sm:w-auto"
                   )}
                 >
                   Buyer / Vendor Login
@@ -181,7 +180,7 @@ export default function HomePage() {
                   href="/signup"
                   className={cn(
                     buttonVariants({ size: "lg", variant: "outline" }),
-                    "h-12 border-white/25 bg-transparent px-8 text-white hover:bg-white hover:text-ink"
+                    "h-12 w-full rounded-full border-white/40 bg-transparent px-8 text-white hover:bg-white hover:text-navy-deep sm:w-auto"
                   )}
                 >
                   Create Account

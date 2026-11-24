@@ -1,4 +1,4 @@
--- Just A Click — MySQL schema 
+-- Just A Click — MySQL schema
 -- Run once: mysql -u root -p < sql/01_schema.sql
 
 CREATE DATABASE IF NOT EXISTS justaclick
@@ -7,7 +7,7 @@ CREATE DATABASE IF NOT EXISTS justaclick
 
 USE justaclick;
 
--- Users (auth / signup)
+-- Users (auth / signup / email verification)
 CREATE TABLE IF NOT EXISTS users (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   name VARCHAR(120) NOT NULL,
@@ -15,10 +15,32 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash VARCHAR(255) NOT NULL,
   company VARCHAR(190) NULL,
   role ENUM('buyer', 'wholesaler', 'vendor', 'designer') NOT NULL DEFAULT 'buyer',
+  email_verified TINYINT(1) NOT NULL DEFAULT 0,
+  email_verified_at DATETIME NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  UNIQUE KEY uq_users_email (email)
+  UNIQUE KEY uq_users_email (email),
+  KEY idx_users_verified (email_verified)
+) ENGINE=InnoDB;
+
+-- Email verification / password-reset tokens
+CREATE TABLE IF NOT EXISTS auth_tokens (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id BIGINT UNSIGNED NOT NULL,
+  token CHAR(64) NOT NULL,
+  type ENUM('email_verify', 'password_reset') NOT NULL DEFAULT 'email_verify',
+  expires_at DATETIME NOT NULL,
+  used_at DATETIME NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_auth_tokens_token (token),
+  KEY idx_auth_tokens_user (user_id),
+  KEY idx_auth_tokens_type_expires (type, expires_at),
+  CONSTRAINT fk_auth_tokens_user
+    FOREIGN KEY (user_id) REFERENCES users (id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Product categories
@@ -123,7 +145,7 @@ CREATE TABLE IF NOT EXISTS job_openings (
   UNIQUE KEY uq_job_openings_slug (slug)
 ) ENGINE=InnoDB;
 
--- Get in Touch leads
+-- Get in Touch / contact enquiry storage
 CREATE TABLE IF NOT EXISTS contact_leads (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(120) NOT NULL,
@@ -133,10 +155,12 @@ CREATE TABLE IF NOT EXISTS contact_leads (
   company VARCHAR(190) NULL,
   subject VARCHAR(80) NOT NULL,
   message TEXT NOT NULL,
+  status ENUM('new', 'read', 'replied', 'archived') NOT NULL DEFAULT 'new',
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   KEY idx_contact_email (email),
-  KEY idx_contact_created (created_at)
+  KEY idx_contact_created (created_at),
+  KEY idx_contact_status (status)
 ) ENGINE=InnoDB;
 
 -- Newsletter subscribers

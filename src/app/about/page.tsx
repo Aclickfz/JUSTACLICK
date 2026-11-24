@@ -203,7 +203,7 @@ export default function AboutPage() {
             {history.map((event) => (
               <li key={event.year} className="relative">
                 <span className="absolute -left-[2.6rem] top-1 flex size-5 items-center justify-center rounded-full bg-gradient-to-br from-brand to-brand ring-4 ring-white" />
-                <Card className="border-border/70">
+                <Card className="rounded-lg border-border/70 shadow-[0_8px_30px_rgba(34,49,64,0.04)]">
                   <CardContent>
                     <p className="text-gradient font-heading text-2xl font-bold">
                       {event.year}

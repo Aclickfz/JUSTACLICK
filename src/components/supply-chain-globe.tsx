@@ -81,16 +81,16 @@ export function SupplyChainGlobe() {
       root = am5.Root.new(chartRef.current);
       root._logo?.dispose();
 
-      // Site theme: Finanzia slate + green
-      const brand = am5.color(0x1a7e00);
-      const brandDark = am5.color(0x0e6118);
-      const brandSoft = am5.color(0x6e997f);
+      // Site theme: Finanzia slate + navy
+      const brand = am5.color(0x223140);
+      const brandDark = am5.color(0x051423);
+      const brandSoft = am5.color(0x677a74);
       const ink = am5.color(0x223140);
-      const mist = am5.color(0xf9f9f9);
+      const mist = am5.color(0xf3f7fb);
       const land = am5.color(0xeef1f3);
-      const producerFill = am5.color(0x1a7e00);
-      const hubFill = am5.color(0x223140);
-      const consumerFill = am5.color(0x6e997f);
+      const producerFill = am5.color(0x223140);
+      const hubFill = am5.color(0x051423);
+      const consumerFill = am5.color(0x677a74);
 
       const siteTheme = am5.Theme.new(root);
       siteTheme.rule("InterfaceColors").setAll({
@@ -432,7 +432,7 @@ export function SupplyChainGlobe() {
             <span className="size-3 rounded-sm bg-navy" /> Logistics hubs
           </span>
           <span className="inline-flex items-center gap-2 text-muted-foreground">
-            <span className="size-3 rounded-sm bg-[#6e997f]" /> Markets
+            <span className="size-3 rounded-sm bg-[#677a74]" /> Markets
           </span>
         </div>
 

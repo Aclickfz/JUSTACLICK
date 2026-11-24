@@ -1,7 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { findUserByEmail, isMysqlConfigured } from "@/lib/db";
+
+class EmailNotVerifiedError extends CredentialsSignin {
+  code = "EMAIL_NOT_VERIFIED";
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
@@ -30,11 +34,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const valid = await bcrypt.compare(password, user.passwordHash);
         if (!valid) return null;
 
+        if (!user.emailVerified) {
+          throw new EmailNotVerifiedError();
+        }
+
         return {
           id: String(user.id),
           email: user.email,
           name: user.name,
           role: user.role,
+          isVerified: true,
         };
       },
     }),
@@ -46,13 +55,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = (user as { role?: string }).role;
+        token.role = user.role;
+        token.isVerified = user.isVerified;
+        if (user.id) token.sub = user.id;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as { role?: string }).role = token.role as string;
+        if (token.sub) session.user.id = token.sub;
+        session.user.role =
+          typeof token.role === "string" ? token.role : undefined;
+        session.user.isVerified = Boolean(token.isVerified);
       }
       return session;
     },
