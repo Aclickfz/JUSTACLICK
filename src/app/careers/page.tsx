@@ -20,9 +20,16 @@ import { getJobOpenings } from "@/lib/data";
 import type { IJobOpening } from "@/models/Career";
 
 export const metadata: Metadata = {
-  title: "Careers",
+  title: "Careers | Join the Home Furnishing Supply Chain Team",
   description:
-    "Join our team and help shape the future of home furnishing. Explore open roles at Just A Click.",
+    "Explore open roles at Just A Click and help shape the future of home furnishing design, manufacturing, and global supply chains.",
+  alternates: { canonical: "/careers" },
+  openGraph: {
+    title: "Careers | Just A Click",
+    description:
+      "Join our team and help build the supply chain of the future.",
+    url: "/careers",
+  },
 };
 
 const perks = [

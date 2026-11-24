@@ -17,9 +17,16 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Investors",
+  title: "Investors | Reports & Stakeholder Resources",
   description:
-    "Financial information, annual reports, and investor resources for Just A Click stakeholders.",
+    "Investor resources for Just A Click — financial information, reports, and updates for stakeholders in our global home furnishing platform.",
+  alternates: { canonical: "/investors" },
+  openGraph: {
+    title: "Investors | Just A Click",
+    description:
+      "Financial information and resources for Just A Click stakeholders.",
+    url: "/investors",
+  },
 };
 
 const overview = [

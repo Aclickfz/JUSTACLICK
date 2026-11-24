@@ -81,16 +81,16 @@ export function SupplyChainGlobe() {
       root = am5.Root.new(chartRef.current);
       root._logo?.dispose();
 
-      // Site theme: navy + orange
-      const brand = am5.color(0xf97316);
-      const brandDark = am5.color(0xea580c);
-      const brandSoft = am5.color(0xfdba74);
-      const ink = am5.color(0x0b1220);
-      const mist = am5.color(0xf7f8fb);
-      const land = am5.color(0xeef1f6);
-      const producerFill = am5.color(0xf97316);
-      const hubFill = am5.color(0x0b1220);
-      const consumerFill = am5.color(0xfdba74);
+      // Site theme: Finanzia slate + green
+      const brand = am5.color(0x1a7e00);
+      const brandDark = am5.color(0x0e6118);
+      const brandSoft = am5.color(0x6e997f);
+      const ink = am5.color(0x223140);
+      const mist = am5.color(0xf9f9f9);
+      const land = am5.color(0xeef1f3);
+      const producerFill = am5.color(0x1a7e00);
+      const hubFill = am5.color(0x223140);
+      const consumerFill = am5.color(0x6e997f);
 
       const siteTheme = am5.Theme.new(root);
       siteTheme.rule("InterfaceColors").setAll({
@@ -272,7 +272,7 @@ export function SupplyChainGlobe() {
           fontSize: 16,
           fontWeight: "600",
           fill: ink,
-          fontFamily: "Montserrat, Arial, sans-serif",
+          fontFamily: "DM Sans, Arial, sans-serif",
           x: am5.p50,
           centerX: am5.p50,
         })
@@ -283,7 +283,7 @@ export function SupplyChainGlobe() {
           text: "Manufacturing → Hubs → Markets",
           fontSize: 11,
           fill: brandDark,
-          fontFamily: "Montserrat, Arial, sans-serif",
+          fontFamily: "DM Sans, Arial, sans-serif",
           x: am5.p50,
           centerX: am5.p50,
         })
@@ -303,7 +303,7 @@ export function SupplyChainGlobe() {
           text: "Globe",
           fill: ink,
           fontSize: 12,
-          fontFamily: "Montserrat, Arial, sans-serif",
+          fontFamily: "DM Sans, Arial, sans-serif",
         })
       );
 
@@ -377,7 +377,7 @@ export function SupplyChainGlobe() {
           text: "Map",
           fill: ink,
           fontSize: 12,
-          fontFamily: "Montserrat, Arial, sans-serif",
+          fontFamily: "DM Sans, Arial, sans-serif",
         })
       );
 
@@ -432,7 +432,7 @@ export function SupplyChainGlobe() {
             <span className="size-3 rounded-sm bg-navy" /> Logistics hubs
           </span>
           <span className="inline-flex items-center gap-2 text-muted-foreground">
-            <span className="size-3 rounded-sm bg-[#fdba74]" /> Markets
+            <span className="size-3 rounded-sm bg-[#6e997f]" /> Markets
           </span>
         </div>
 

@@ -9,9 +9,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Just A Click | Global Home Furnishing Partner",
   description:
-    "We aspire to deliver value in global supply chains by living our values around people, partners and planet.",
+    "Learn how Just A Click builds value across global home furnishing supply chains — people, partners, and planet — from design to worldwide delivery.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Just A Click",
+    description:
+      "Global home furnishing supply chain partner focused on people, partners, and planet.",
+    url: "/about",
+  },
 };
 
 const values = [
@@ -351,10 +358,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

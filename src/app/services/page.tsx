@@ -18,9 +18,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Home Furnishing Services | Design to Global Delivery",
   description:
-    "End-to-end home furnishing solutions – from exclusive designs to global delivery.",
+    "End-to-end home furnishing services from Just A Click — exclusive design, manufacturing, quality control, and global logistics for buyers and brands.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Home Furnishing Services | Just A Click",
+    description:
+      "From exclusive designs to global delivery — full-service home furnishing solutions.",
+    url: "/services",
+  },
 };
 
 const services = [
@@ -134,7 +141,7 @@ export default function ServicesPage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.58 0.11 195 / 0.08),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(26_126_0_/_0.08),transparent_40%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Our"
@@ -248,10 +255,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

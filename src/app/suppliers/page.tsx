@@ -10,9 +10,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Suppliers",
+  title: "Suppliers | Join Our Global Supply Chain Network",
   description:
-    "Partner with Just A Click and become part of our global supply chain network.",
+    "Partner with Just A Click as a supplier — join a global home furnishing supply chain network built on quality, reliability, and long-term growth.",
+  alternates: { canonical: "/suppliers" },
+  openGraph: {
+    title: "Suppliers | Just A Click",
+    description:
+      "Become part of our global home furnishing supplier network.",
+    url: "/suppliers",
+  },
 };
 
 const overview = [
@@ -313,10 +320,7 @@ export default function SuppliersPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

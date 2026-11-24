@@ -18,9 +18,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Media",
+  title: "Media & Press | Newsroom Resources",
   description:
-    "Press releases, media resources, and company announcements from Just A Click.",
+    "Press releases, media kits, and company announcements from Just A Click — the home furnishing supply chain partner.",
+  alternates: { canonical: "/media" },
+  openGraph: {
+    title: "Media | Just A Click",
+    description:
+      "Press releases and media resources from Just A Click.",
+    url: "/media",
+  },
 };
 
 const overview = [

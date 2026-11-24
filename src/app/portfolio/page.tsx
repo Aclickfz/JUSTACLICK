@@ -12,9 +12,16 @@ import type { IPortfolioItem } from "@/models/Portfolio";
 import { PortfolioGrid, type PortfolioGridItem } from "./portfolio-grid";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Portfolio | Global Home Furnishing Projects",
   description:
-    "From in-house designs to custom wholesale projects, see how we bring ideas to life globally.",
+    "See Just A Click portfolio projects — in-house designs and custom wholesale home furnishing work delivered for brands worldwide.",
+  alternates: { canonical: "/portfolio" },
+  openGraph: {
+    title: "Portfolio | Just A Click",
+    description:
+      "In-house designs and custom wholesale projects delivered globally.",
+    url: "/portfolio",
+  },
 };
 
 const featuredStats = [
@@ -57,7 +64,7 @@ export default async function PortfolioPage() {
       </section>
 
       <section className="relative overflow-hidden bg-mist/80 py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.58 0.11 195 / 0.1),transparent_45%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgb(26_126_0_/_0.1),transparent_45%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Featured"

@@ -221,7 +221,7 @@ export function SiteHeader() {
         >
           <Image
             src="/logo/justaclick-logo.png"
-            alt="JustAClick"
+            alt="Just A Click"
             fill
             priority
             sizes="180px"
@@ -344,7 +344,7 @@ export function SiteHeader() {
                 <div className="relative h-9 w-[150px] bg-transparent">
                   <Image
                     src="/logo/justaclick-logo.png"
-                    alt="JustAClick"
+                    alt="Just A Click"
                     fill
                     className="bg-transparent object-contain object-left"
                   />

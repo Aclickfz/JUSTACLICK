@@ -10,9 +10,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Supply Chain Innovation",
+  title: "Supply Chain Innovation | Flexible Global Logistics",
   description:
-    "Customized, end-to-end supply chain and logistics solutions for brands and retailers with unrivaled flexibility and scalability.",
+    "Customized end-to-end supply chain and logistics solutions from Just A Click — flexible, scalable support for home furnishing brands and retailers.",
+  alternates: { canonical: "/innovation" },
+  openGraph: {
+    title: "Supply Chain Innovation | Just A Click",
+    description:
+      "Flexible, scalable logistics for brands and retailers worldwide.",
+    url: "/innovation",
+  },
 };
 
 const journey = [
@@ -182,7 +189,7 @@ export default function InnovationPage() {
       </section>
 
       <section className="relative overflow-hidden bg-mist/80 py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.58 0.11 195 / 0.1),transparent_45%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgb(26_126_0_/_0.1),transparent_45%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="The Just A Click"
@@ -341,10 +348,7 @@ export default function InnovationPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

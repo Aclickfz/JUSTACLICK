@@ -10,9 +10,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Our Experts",
+  title: "Meet Our Experts | Design, Sourcing & Delivery Teams",
   description:
-    "Every project is backed by a skilled team across design, sourcing, production, quality, and delivery.",
+    "Meet the Just A Click experts behind every project — specialists in design, sourcing, production, quality control, and global delivery.",
+  alternates: { canonical: "/team" },
+  openGraph: {
+    title: "Meet Our Experts | Just A Click",
+    description:
+      "Skilled teams across design, sourcing, production, quality, and delivery.",
+    url: "/team",
+  },
 };
 
 const departments = [
@@ -214,10 +221,7 @@ export default function TeamPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

@@ -11,9 +11,16 @@ import { NewsletterForm } from "./newsletter-form";
 import { NewsGrid } from "./news-grid";
 
 export const metadata: Metadata = {
-  title: "News",
+  title: "News | Home Furnishing & Supply Chain Updates",
   description:
-    "Stay updated with the latest developments in home furnishing, supply chain innovation, and sustainability initiatives.",
+    "Latest Just A Click news on home furnishing, supply chain innovation, manufacturing, and sustainability initiatives.",
+  alternates: { canonical: "/news" },
+  openGraph: {
+    title: "News | Just A Click",
+    description:
+      "Updates on home furnishing, supply chain innovation, and sustainability.",
+    url: "/news",
+  },
 };
 
 function formatDate(date: Date | string) {

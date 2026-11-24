@@ -17,9 +17,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "We Manage, You Grow",
+  title: "We Manage, You Grow | End-to-End Production Partner",
   description:
-    "Let's remove your production & design burdens from concept to delivery. Every detail is managed by us — you focus on your growth.",
+    "Just A Click removes production and design burdens from concept to delivery so buyers and brands can focus on growth in home furnishings.",
+  alternates: { canonical: "/we-manage-you-grow" },
+  openGraph: {
+    title: "We Manage, You Grow | Just A Click",
+    description:
+      "From concept to delivery — we manage the details so you can grow.",
+    url: "/we-manage-you-grow",
+  },
 };
 
 const services = [
@@ -78,7 +85,7 @@ export default function WeManageYouGrowPage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.58 0.11 195 / 0.08),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(26_126_0_/_0.08),transparent_40%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Six Ways We"
@@ -130,10 +137,7 @@ export default function WeManageYouGrowPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

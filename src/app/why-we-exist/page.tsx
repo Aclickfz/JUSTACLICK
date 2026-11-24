@@ -10,9 +10,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Why We Exist",
+  title: "Why We Exist | Excellence, Innovation & Trust",
   description:
-    "Driven by Excellence, Innovation & Trust. We empower buyers, wholesalers, and vendors with seamless, reliable, premium solutions.",
+    "Just A Click exists to empower buyers, wholesalers, and vendors with seamless, reliable home furnishing solutions driven by excellence, innovation, and trust.",
+  alternates: { canonical: "/why-we-exist" },
+  openGraph: {
+    title: "Why We Exist | Just A Click",
+    description:
+      "Empowering buyers and vendors with premium, reliable supply chain solutions.",
+    url: "/why-we-exist",
+  },
 };
 
 const differentiators = [
@@ -314,10 +321,7 @@ export default function WhyWeExistPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

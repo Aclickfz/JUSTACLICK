@@ -5,7 +5,7 @@ import { ContactFields } from "@/components/contact-fields";
 
 export function ContactForm() {
   return (
-    <section className="relative overflow-hidden py-24">
+    <section id="contact" className="relative scroll-mt-28 overflow-hidden py-24">
       <div className="section-shell relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <SectionHeading
           title="Get in"

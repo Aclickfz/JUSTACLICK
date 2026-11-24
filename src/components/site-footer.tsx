@@ -6,8 +6,11 @@ const companyLinks = [
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/products", label: "Products" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/news", label: "News" },
   { href: "/careers", label: "Careers" },
   { href: "/investors", label: "Investors" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function SiteFooter() {
@@ -18,7 +21,7 @@ export function SiteFooter() {
           <Link href="/" className="relative mb-4 block h-10 w-[170px] bg-transparent">
             <Image
               src="/logo/justaclick-logo.png"
-              alt="JustAClick"
+              alt="Just A Click"
               fill
               sizes="170px"
               className="bg-transparent object-contain object-left brightness-0 invert"
@@ -53,8 +56,24 @@ export function SiteFooter() {
             Contact
           </h4>
           <ul className="space-y-3 text-sm text-white/65">
-            <li>Email:aclickfz@gmail.com</li>
-            <li>Phone: +91 7088671662</li>
+            <li>
+              Email:{" "}
+              <a
+                href="mailto:info@justaclick.com"
+                className="transition-colors hover:text-brand"
+              >
+                info@justaclick.com
+              </a>
+            </li>
+            <li>
+              Phone:{" "}
+              <a
+                href="tel:+917088671662"
+                className="transition-colors hover:text-brand"
+              >
+                +91 7088671662
+              </a>
+            </li>
             <li>Global operations & partner network</li>
           </ul>
         </div>
@@ -80,8 +99,12 @@ export function SiteFooter() {
       <div className="section-shell flex flex-col gap-2 py-6 text-sm text-white/40 sm:flex-row sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} Just A Click. All rights reserved.</p>
         <div className="flex gap-6">
-          <span>Terms</span>
-          <span>Privacy</span>
+          <Link href="/terms" className="transition-colors hover:text-brand">
+            Terms
+          </Link>
+          <Link href="/privacy" className="transition-colors hover:text-brand">
+            Privacy
+          </Link>
         </div>
       </div>
     </footer>

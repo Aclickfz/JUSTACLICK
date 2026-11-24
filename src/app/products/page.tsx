@@ -13,9 +13,16 @@ import { getFeaturedProducts, getProductCategories } from "@/lib/data";
 import type { IProduct, IProductCategory } from "@/models/Product";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Furniture, Lighting & Decor for Buyers & Wholesalers",
   description:
-    "From furniture and lighting to decor and textiles — crafted for buyers, wholesalers, and vendors.",
+    "Explore Just A Click products — furniture, lighting, decor, and textiles crafted for buyers, wholesalers, vendors, and global retail partners.",
+  alternates: { canonical: "/products" },
+  openGraph: {
+    title: "Products | Just A Click",
+    description:
+      "Furniture, lighting, decor, and textiles for wholesale and retail partners.",
+    url: "/products",
+  },
 };
 
 const gradient =
@@ -39,7 +46,7 @@ export default async function ProductsPage() {
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.58 0.11 195 / 0.08),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(26_126_0_/_0.08),transparent_40%)]" />
         <div className="section-shell relative">
           <SectionHeading
             title="Product"
@@ -190,10 +197,7 @@ export default async function ProductsPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

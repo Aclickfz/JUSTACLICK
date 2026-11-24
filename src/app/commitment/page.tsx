@@ -8,9 +8,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Our Commitment",
+  title: "Our Commitment | Quality, Trust & Sustainable Production",
   description:
-    "Complete peace of mind through design excellence, consistent quality production, and smooth global logistics.",
+    "Just A Click commits to transparent partnerships, consistent quality production, custom solutions, and environmentally responsible home furnishing logistics.",
+  alternates: { canonical: "/commitment" },
+  openGraph: {
+    title: "Our Commitment | Just A Click",
+    description:
+      "Design excellence, quality production, and smooth global logistics.",
+    url: "/commitment",
+  },
 };
 
 const commitments = [
@@ -72,13 +79,19 @@ export default function CommitmentPage() {
       <PageHero
         eyebrow="Our Promise"
         title="Our Commitment"
-        description="Our commitment is to provide complete peace of mind through design excellence, consistent quality production, and smooth global logistics."
+        description="Peace of mind through design excellence, consistent quality production, and smooth global home furnishing logistics."
         imageUrl="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2000&q=80"
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.58 0.11 195 / 0.08),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(26_126_0_/_0.08),transparent_40%)]" />
         <div className="section-shell relative">
+          <p className="mb-12 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            From first sketch to final shipment, Just A Click commits to clear
+            communication, reliable manufacturing, and responsible logistics so
+            buyers and brands can scale home furnishing programs with
+            confidence.
+          </p>
           <SectionHeading
             title="Four Promises,"
             accent="One Standard"
@@ -138,10 +151,7 @@ export default function CommitmentPage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

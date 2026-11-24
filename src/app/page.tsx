@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Check } from "lucide-react";
@@ -11,6 +12,21 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { homeContent } from "@/content/home";
 import { productCategories } from "@/data/seed-data";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Just A Click | Home Furnishing Supply Chain & Manufacturing",
+  },
+  description:
+    "Just A Click designs, manufactures, and delivers home furnishings worldwide. End-to-end supply chain for buyers, wholesalers, vendors, and brands.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Just A Click | Home Furnishing Supply Chain & Manufacturing",
+    description:
+      "Design, manufacture, and deliver worldwide with a supply chain built for growth.",
+    url: "/",
+  },
+};
 
 export default function HomePage() {
   return (
@@ -142,7 +158,7 @@ export default function HomePage() {
       <section id="start" className="py-24">
         <div className="section-shell">
           <div className="relative overflow-hidden border border-border bg-ink px-6 py-14 text-center sm:px-12">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.58_0.11_195_/_0.25),transparent_45%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgb(26_126_0_/_0.25),transparent_45%)]" />
             <div className="relative">
               <h2 className="font-heading text-3xl font-bold text-white sm:text-5xl">
                 Ready to <span className="text-gradient">Grow Together?</span>

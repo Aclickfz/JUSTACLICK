@@ -49,7 +49,7 @@ function StatCard({
 export function StatsCounters() {
   return (
     <section className="relative overflow-hidden bg-ink py-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,oklch(0.58_0.11_195_/_0.18),transparent_45%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgb(26_126_0_/_0.18),transparent_45%)]" />
       <div className="section-shell relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {homeContent.stats.map((stat) => (
           <StatCard key={stat.label} {...stat} />

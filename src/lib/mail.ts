@@ -58,14 +58,14 @@ function brandShell(title: string, body: string) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${escapeHtml(title)}</title>
 </head>
-<body style="margin:0;padding:0;background:#f1f5f9;font-family:Montserrat,Arial,sans-serif;color:#0f172a;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f1f5f9;padding:32px 16px;">
+<body style="margin:0;padding:0;background:#f9f9f9;font-family:DM Sans,Arial,sans-serif;color:#223140;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f9f9f9;padding:32px 16px;">
     <tr>
       <td align="center">
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e4e9f1;">
           <tr>
-            <td style="background:linear-gradient(135deg,#0b1220,#070d18);padding:28px 32px;">
-              <p style="margin:0;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#f97316;">Just A Click</p>
+            <td style="background:linear-gradient(135deg,#223140,#051423);padding:28px 32px;">
+              <p style="margin:0;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#1a7e00;">Just A Click</p>
               <h1 style="margin:8px 0 0;font-size:24px;line-height:1.3;color:#ffffff;">${escapeHtml(title)}</h1>
             </td>
           </tr>

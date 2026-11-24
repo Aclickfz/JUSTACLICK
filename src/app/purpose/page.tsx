@@ -8,9 +8,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Our Purpose",
+  title: "Our Purpose | Humility, Entrepreneurship & Family",
   description:
-    "We aspire to deliver value in global supply chains by living our values around people, partners and planet.",
+    "Just A Click’s purpose is to deliver value in home furnishing supply chains through humility, entrepreneurship, and family — for clients, partners, and communities.",
+  alternates: { canonical: "/purpose" },
+  openGraph: {
+    title: "Our Purpose | Just A Click",
+    description:
+      "Values that guide how we serve clients across the global supply chain.",
+    url: "/purpose",
+  },
 };
 
 const values = [
@@ -61,17 +68,24 @@ export default function PurposePage() {
       <PageHero
         eyebrow="Who We Are"
         title="Our Purpose"
-        description="We aspire to deliver value in global supply chains by living our values around people, partners and planet."
+        description="Delivering value across global home furnishing supply chains — for people, partners, and planet."
         imageUrl="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2000&q=80"
       />
 
       <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.58 0.11 195 / 0.08),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgb(26_126_0_/_0.08),transparent_40%)]" />
         <div className="section-shell relative">
+          <p className="mb-12 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            Just A Click exists to make home furnishing sourcing, manufacturing,
+            and global delivery simpler for buyers, wholesalers, and vendors.
+            Our purpose is practical: build long-term partnerships, ship quality
+            products reliably, and grow responsibly with the communities in our
+            supply chain.
+          </p>
           <SectionHeading
             title="Our"
             accent="Values"
-            description="Our values of humility, entrepreneurship, and family guide everything we do. They shape how we serve our clients, innovate for growth, and build meaningful relationships. These core principles ensure we stay grounded, remain agile, and create a collaborative environment where trust and respect thrive."
+            description="Humility, entrepreneurship, and family guide how we serve clients, innovate for growth, and build trust across every project."
           />
           <div className="grid gap-6 lg:grid-cols-3">
             {values.map((value, index) => (
@@ -126,10 +140,7 @@ export default function PurposePage() {
           </div>
         </div>
       </section>
-
-      <div id="contact">
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

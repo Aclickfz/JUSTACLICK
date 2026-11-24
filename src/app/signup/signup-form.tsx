@@ -145,8 +145,13 @@ export function SignupForm() {
         />
         <span>
           I agree to the{" "}
-          <span className="font-medium text-brand">Terms of Service</span> and{" "}
-          <span className="font-medium text-brand">Privacy Policy</span>
+          <a href="/terms" className="font-medium text-brand hover:underline">
+            Terms of Service
+          </a>{" "}
+          and{" "}
+          <a href="/privacy" className="font-medium text-brand hover:underline">
+            Privacy Policy
+          </a>
         </span>
       </label>
       <Button

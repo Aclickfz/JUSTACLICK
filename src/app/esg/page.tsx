@@ -9,9 +9,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "ESG Strategy",
+  title: "ESG Strategy | Sustainable Home Furnishing Supply Chains",
   description:
-    "We responsibly manage our environmental, social and governance performance and work with partners to further the sustainability of supply chains and communities.",
+    "Just A Click’s ESG strategy covers environmental, social, and governance performance — building more sustainable home furnishing supply chains and communities.",
+  alternates: { canonical: "/esg" },
+  openGraph: {
+    title: "ESG Strategy | Just A Click",
+    description:
+      "Responsible environmental, social, and governance performance across our network.",
+    url: "/esg",
+  },
 };
 
 const pillars = [
